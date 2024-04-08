@@ -168,6 +168,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
           Proceso
     HAVING
           saldo > 0 or saldo < 0";
+          
     $cuentasxpagar = DB::select($s_InfoCxp);
     $totalcxp  = Empty($cuentasxpagar)? 0: (float) $cuentasxpagar[0]->saldo;
     session(['vs_totalventas' => $totalventas]);
