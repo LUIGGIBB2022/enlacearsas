@@ -432,7 +432,7 @@ class VentasController extends Controller
                   'costop09'        => $dato['costop09'],
                   'costop10'        => $dato['costop10'],
                   'costop11'        => $dato['costop11'],
-                  'costop12'        => $dato['costop012']
+                  'costop12'        => $dato['costop12']
               ]);
 
            }
