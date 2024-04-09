@@ -410,7 +410,7 @@ class VentasController extends Controller
               saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
               'lote' => $lote],
               [
-                  'anodeproceso'    => $ano,
+                  'anodeproceso'    => $anoproc,
                   'producto'        => $producto,
                   'bodega'          => $bodega,
                   'lote'            => !is_null($lote)?$lote:"",
