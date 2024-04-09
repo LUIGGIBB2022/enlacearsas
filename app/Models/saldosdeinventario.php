@@ -18,7 +18,7 @@ class saldosdeinventario extends Model
         'pesoent09','pesoent10','pesoent11','pesoent12','pesosal01','pesosal02','pesosal03','pesosal04','pesosal05','pesosal06','pesosal07','pesosal08','pesosal09','pesosal10','pesosal11','pesosal12','fisicocantidad1',
         'fisicocantidad1','fisicocantidad2','fisicocantidad3','fisicopeso1','fisicopeso2','fisicopeso2','usuario_created','usuario_updated','fecha_created','fecha_updated'];
 
-    protected $primaryKey = "saldosdeinventariosid";
+    protected $primaryKey = "saldosdeinventariosID";
     public $timestamps = false;
 
     public function getKeyName(){

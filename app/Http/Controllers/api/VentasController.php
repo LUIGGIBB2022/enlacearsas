@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\api;
-
 use App\Http\Controllers\Controller;
 use App\Models\cliente;
 use App\Models\detalledefactura;
@@ -11,7 +10,6 @@ use App\Models\saldosdeinventario;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use \Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -407,6 +405,7 @@ class VentasController extends Controller
               $bodega   = $dato['bodega'];
               $lote     = $dato['lote'];
               $anoproc  = strval($ano);
+
               DB::statement('SET FOREIGN_KEY_CHECKS=0;');
               saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
               'lote' => $lote],
