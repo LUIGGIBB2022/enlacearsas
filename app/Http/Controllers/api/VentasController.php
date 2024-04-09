@@ -410,8 +410,8 @@ class VentasController extends Controller
               $reg_bodega = saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
               'lote' => $lote],
               [
-                  'anodeproceso'    => $dato['anodeproceso'],
-                  'producto'        => $dato['producto'],
+                  'anodeproceso'    => $ano,
+                  'producto'        => $dato['coidgo'],
                   'bodega'          => $dato['bodega'],
                   'lote'            => $dato['lote'],
                   'cantidad'        => $dato['cantidad'],
