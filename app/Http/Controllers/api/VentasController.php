@@ -7,11 +7,14 @@ use App\Models\cliente;
 use App\Models\detalledefactura;
 use App\Models\factura;
 use App\Models\movimientosdeinventario;
+use App\Models\saldosdeinventario;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use \Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+
 
 use function PHPUnit\Framework\isNull;
 
@@ -288,7 +291,7 @@ class VentasController extends Controller
                     'mesero'                => is_null($factura['mesero'])?"":$factura['mesero'],
                     'conceptodeinterface'   => "",
                     'lista'                 => $factura['lista'],
-                    'plan'                  => is_null($factura['plan'])?"":$factura['plan'],
+                    'plan'                  => is_null($factura['planf'])?"":$factura['planf'],
                     'transportador'         => is_null($factura['transportador'])?"":$factura['transportador'],
                     'placa'                 => is_null($factura['placa'])?"":$factura['placa'],
                     'tipodepago'            => is_null($factura['tipodepago'])?"":$factura['tipodepago'],
@@ -391,6 +394,50 @@ class VentasController extends Controller
            }
        }
 
+       $contador = 0;
+       if (isset($request->saldos))
+       {
+           $saldos   = $request->saldos;
+           $fecha =  Carbon::now();
+           $ano = $fecha()->year();
+
+           foreach ($saldos as $dato)
+           {
+              $producto = $dato['producto'];
+              $bodega   = $dato['bodega'];
+              $lote     = $dato['lote'];
+              $anoproc  = $ano;
+              $reg_bodega = saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
+              'lote' => $lote],
+              [
+                  'anodeproceso'    => $dato['anodeproceso'],
+                  'producto'        => $dato['producto'],
+                  'bodega'          => $dato['bodega'],
+                  'lote'            => $dato['lote'],
+                  'cantidad'        => $dato['cantidad'],
+                  'cantidad1'       => $dato['cantidad2'],
+                  'costopromedio'   => $dato['cstpromed'],
+                  'ultimocosto'     => $dato['ultmcosto'],
+                  'saldoanterior'   => $dato['sdanterior'],
+                  'saldoanterior1'  => $dato['psanterior'],
+                  'costop00'        => $dato['costop00'],
+                  'costop01'        => $dato['costop01'],
+                  'costop02'        => $dato['costop02'],
+                  'costop03'        => $dato['costop03'],
+                  'costop04'        => $dato['costop04'],
+                  'costop05'        => $dato['costop05'],
+                  'costop06'        => $dato['costop06'],
+                  'costop07'        => $dato['costop07'],
+                  'costop08'        => $dato['costop08'],
+                  'costop09'        => $dato['costop09'],
+                  'costop10'        => $dato['costop10'],
+                  'costop11'        => $dato['costop11'],
+                  'costop12'        => $dato['costop012']
+              ]);
+
+           }
+       }
+
     //    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
     //    detalledefactura::where('detalledefacturas.fechadefactura',">=",$fechadesde)
     //    ->where('detalledefacturas.fechadefactura',"<=",$fechahasta)
@@ -404,27 +451,4 @@ class VentasController extends Controller
         'msg2'      => $contador,
        ],Response::HTTP_ACCEPTED);
     }
-
-    // detalledefactura::where('detalledefacturas.numerodefactura',"=",$numerofactura)
-    // ->where('detalledefacturas.tipodedocumento',"=",$tipodcto)
-    // ->where('detalledefacturas.prefijo',"=",$prefijo)
-    // ->update(['detalledefacturas.numerodefactura' => $numerofactura]);
-
-    //    return response()->json(
-    //     [
-    //     'status'   => '200',
-    //     'msg'      => 'Actualización de Facturas Exitosa',
-    //     ],Response::HTTP_ACCEPTED);
-    //}
 }
-
-
-// catch (DecryptException $e)
-//                    {
-//                       return response()->json(
-//                         [
-//                          'status'   => '500',
-//                          'msg'      => 'Error de Escritura en Facturas',
-//                          'error' => $e->getMessage(),
-//                         ],Response::HTTP_CONFLICT);
-//                    }

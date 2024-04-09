@@ -27,6 +27,7 @@
             </meta>
         </meta>
         <style>
+           
            #weatherWidget .currentDesc
            {
              color: #ffffff!important;

@@ -53,6 +53,7 @@
                 <nav class="navbar navbar-expand-lg bg-body-tertiary p-1 header_home">
                     <div class="container-fluid">
                         <label class="form-label titulo_login">{{ $title }} </label>
+                        <span>Licenciado a Almacénes AR SAS</span>
                     </div>
                 </nav>
 
