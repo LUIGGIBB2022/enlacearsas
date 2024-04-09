@@ -399,11 +399,11 @@ class VentasController extends Controller
        if (isset($request->saldos))
        {
            $saldos      = $request->saldos;
-           $fecha       =  Carbon::now();
+           $fecha       = Carbon::now();
            $ano         = $fecha->format('Y');
            foreach ($saldos as $dato)
            {
-              $producto = $dato['producto'];
+              $producto = $dato['codigo'];
               $bodega   = $dato['bodega'];
               $lote     = $dato['lote'];
               $anoproc  = strval($ano);
