@@ -44,7 +44,7 @@ class VentasController extends Controller
                 'razonsocial'           => !is_null($dato['razonsocial'])?$dato['razonsocial']:"",
                 'direccion'             => !is_null($dato['direccion'])?$dato['direccion']:"",
                 'telefono'              => !is_null($dato['telefono'])?$dato['telefono']:"",
-                'email'                 => !is_null($dato['email'])?$dato['email']:"",
+                'email'                 => !is_null($dato['emailf'])?$dato['emailf']:"",
                 'codigo'                => !is_null($dato['codigo'])?$dato['codigo']:"",
                 'empresa'               => !is_null($dato['empresa'])?$dato['empresa']:"",
                 'dv'                    => !is_null($dato['dv'])?$dato['dv']:"",
