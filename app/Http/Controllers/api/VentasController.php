@@ -398,9 +398,9 @@ class VentasController extends Controller
        $contador = 0;
        if (isset($request->saldos))
        {
-           $saldos   = $request->saldos;
-           $fecha =  Carbon::now();
-           $ano = $fecha()->year();
+           $saldos      = $request->saldos;
+           $fecha       =  Carbon::now();
+           $ano         = $fecha('Y');
 
            foreach ($saldos as $dato)
            {
