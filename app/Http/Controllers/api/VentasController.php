@@ -400,8 +400,7 @@ class VentasController extends Controller
        {
            $saldos      = $request->saldos;
            $fecha       =  Carbon::now();
-           $ano         = $fecha('Y');
-
+           $ano         = $fecha->format('Y');
            foreach ($saldos as $dato)
            {
               $producto = $dato['producto'];
