@@ -407,6 +407,7 @@ class VentasController extends Controller
               $bodega   = $dato['bodega'];
               $lote     = $dato['lote'];
               $anoproc  = strval($ano);
+              DB::statement('SET FOREIGN_KEY_CHECKS=0;');
               $reg_bodega = saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
               'lote' => $lote],
               [
@@ -434,6 +435,7 @@ class VentasController extends Controller
                   'costop11'        => $dato['costop11'],
                   'costop12'        => $dato['costop12']
               ]);
+              DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
            }
        }
