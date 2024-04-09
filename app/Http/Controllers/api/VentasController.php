@@ -411,7 +411,7 @@ class VentasController extends Controller
               'lote' => $lote],
               [
                   'anodeproceso'    => $ano,
-                  'producto'        => $dato['coidgo'],
+                  'producto'        => $dato['codigo'],
                   'bodega'          => $dato['bodega'],
                   'lote'            => $dato['lote'],
                   'cantidad'        => $dato['cantidad'],
