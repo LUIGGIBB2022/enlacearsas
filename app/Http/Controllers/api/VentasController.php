@@ -408,13 +408,13 @@ class VentasController extends Controller
               $lote     = $dato['lote'];
               $anoproc  = strval($ano);
               DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-              $reg_bodega = saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
+              saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
               'lote' => $lote],
               [
                   'anodeproceso'    => $ano,
-                  'producto'        => !is_null($dato['codigo'])?$dato['codigo']:"",
-                  'bodega'          => !is_null($dato['bodega'])?$dato['bodega']:"",
-                  'lote'            => !is_null($dato['lote'])?$dato['lote']:"",
+                  'producto'        => $producto,
+                  'bodega'          => $bodega,
+                  'lote'            => $lote,
                   'cantidad'        => $dato['cantidad'],
                   'cantidad1'       => $dato['cantidad2'],
                   'costopromedio'   => $dato['costopromedio'],
