@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
+use App\Models\centrodeoperacion;
 use App\Models\cliente;
 use App\Models\detalledefactura;
 use App\Models\factura;
@@ -390,6 +391,8 @@ class VentasController extends Controller
                         'estado02'              => $detalle['estado02'],
                         'estado03'              => $detalle['estado03'],
                         'idregistro'            => $detalle['idregistro'],
+                        'usuario_created'       => $detalle['usuariocreated'],
+                        'usuario_updated'       => $detalle['usuarioupdated'],
                     ]);
            }
        }
@@ -437,11 +440,34 @@ class VentasController extends Controller
                   'costop10'        => $dato['costop10'],
                   'costop11'        => $dato['costop11'],
                   'costop12'        => $dato['costop12'],
-                  'ProductoID'      => $idproducto
+                  'ProductoID'      => $idproducto,
+                  'usuario_created' => $dato['usuariocreated'],
+                  'usuario_updated' => $dato['usuarioupdated'],
               ]);
               DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
            }
+       }
+
+       $contador = 0;
+       if (isset($request->centrooper))
+       {
+          $centros  = $request->centrooper;
+
+          foreach ($centros as $centro)
+          {
+            $codigo   = $centro['codigo'];
+            centrodeoperacion::updatedOrcreate(["codigo" =>$codigo],
+            [
+               'descripcion'      => $centro['descripcion'],
+               'centro'           => "",
+               'scentro'          => "",
+               'estado'           => $centro['estado'],
+               'usuario_created'  => $dato['usuariocreated'],
+               'usuario_updated'  => $dato['usuarioupdated'],
+            ]);
+
+          }
        }
 
     //    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
