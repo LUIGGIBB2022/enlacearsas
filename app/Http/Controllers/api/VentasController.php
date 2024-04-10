@@ -418,6 +418,7 @@ class VentasController extends Controller
                 [
                  'status'   => '200 OK',
                  'msg'      => 'Salida Pre Exitosa',
+                 'año'      => $ano,
                  'msg2'      => $dato,
                 ],Response::HTTP_ACCEPTED);
 
