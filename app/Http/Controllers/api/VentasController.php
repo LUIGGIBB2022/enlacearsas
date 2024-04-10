@@ -449,6 +449,7 @@ class VentasController extends Controller
            }
        }
 
+       
        $contador = 0;
        if (isset($request->centrooper))
        {
