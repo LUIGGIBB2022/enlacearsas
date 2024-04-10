@@ -459,7 +459,9 @@ class VentasController extends Controller
             $codigo   = $centro['codigo'];
             centrodeoperacion::updateOrCreate(["codigo" =>$codigo],
             [
-               'descripcion'      => $centro['descripcion'],
+               'nombre'           => $centro['descripcion'],
+               'direccion'        => "",
+               'telefono'         => "",
                'centro'           => "",
                'scentro'          => "",
                'estado'           => $centro['estado'],
