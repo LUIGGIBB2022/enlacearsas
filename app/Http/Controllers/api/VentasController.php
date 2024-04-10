@@ -405,7 +405,7 @@ class VentasController extends Controller
               $producto         = $dato['codigo'];
               $bodega           = $dato['bodega'];
               $lote             = $dato['lote'];
-              $anoproc          = strval($ano);
+              $anoproc          = $ano;
               $regproducto      = producto::where('codigo', $producto)->first();
               $idproducto       = !isset($regproducto->productoID)?0:$regproducto->productoID;
 
@@ -413,14 +413,6 @@ class VentasController extends Controller
               //'producto'        => $producto,
               //'bodega'          => $bodega,
               //'lote'            => !is_null($lote)?$lote:"",
-
-              return response()->json(
-                [
-                 'status'   => '200 OK',
-                 'msg'      => 'Salida Pre Exitosa',
-                 'año'      => $ano,
-                 'msg2'      => $dato,
-                ],Response::HTTP_ACCEPTED);
 
               DB::statement('SET FOREIGN_KEY_CHECKS=0;');
               saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
