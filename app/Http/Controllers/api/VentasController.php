@@ -403,7 +403,7 @@ class VentasController extends Controller
            foreach ($saldos as $dato)
            {
               $producto         = $dato['codigo'];
-              $bodega           = $dato['bodega'];
+              $bodega           = !is_null($dato['bodega'])?$dato['bodega']:"";
               $lote             = !is_null($dato['lote'])?$dato['lote']:"";
               $anoproc          = $ano;
               $regproducto      = producto::where('codigo', $producto)->first();
