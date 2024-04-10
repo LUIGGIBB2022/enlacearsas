@@ -404,7 +404,7 @@ class VentasController extends Controller
            {
               $producto         = $dato['codigo'];
               $bodega           = $dato['bodega'];
-              $lote             = $dato['lote'];
+              $lote             = !is_null($dato['lote'])?$dato['lote']:"";
               $anoproc          = $ano;
               $regproducto      = producto::where('codigo', $producto)->first();
               $idproducto       = !isset($regproducto->productoID)?0:$regproducto->productoID;
