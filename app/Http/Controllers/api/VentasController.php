@@ -457,7 +457,7 @@ class VentasController extends Controller
           foreach ($centros as $centro)
           {
             $codigo   = $centro['codigo'];
-            centrodeoperacion::updatedOrcreate(["codigo" =>$codigo],
+            centrodeoperacion::updateOrCreate(["codigo" =>$codigo],
             [
                'descripcion'      => $centro['descripcion'],
                'centro'           => "",
