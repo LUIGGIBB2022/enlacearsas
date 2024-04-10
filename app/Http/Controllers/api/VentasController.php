@@ -407,7 +407,7 @@ class VentasController extends Controller
               $lote             = $dato['lote'];
               $anoproc          = strval($ano);
               $regproducto      = producto::where('codigo', $producto)->first();
-              $idproducto       = is_null($regproducto->productoID)?0:$regproducto->productoID;
+              $idproducto       = !isset($regproducto->productoID)?0:$regproducto->productoID;
 
               DB::statement('SET FOREIGN_KEY_CHECKS=0;');
               saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
