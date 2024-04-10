@@ -6,6 +6,7 @@ use App\Models\cliente;
 use App\Models\detalledefactura;
 use App\Models\factura;
 use App\Models\movimientosdeinventario;
+use App\Models\producto;
 use App\Models\saldosdeinventario;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -401,10 +402,12 @@ class VentasController extends Controller
            $ano         = $fecha->format('Y');
            foreach ($saldos as $dato)
            {
-              $producto = $dato['codigo'];
-              $bodega   = $dato['bodega'];
-              $lote     = $dato['lote'];
-              $anoproc  = strval($ano);
+              $producto         = $dato['codigo'];
+              $bodega           = $dato['bodega'];
+              $lote             = $dato['lote'];
+              $anoproc          = strval($ano);
+              $regproducto      = producto::where('codigo', $producto)->first();
+              $idproducto       = $regproducto->ProductoID;
 
               DB::statement('SET FOREIGN_KEY_CHECKS=0;');
               saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
@@ -432,7 +435,8 @@ class VentasController extends Controller
                   'costop09'        => $dato['costop09'],
                   'costop10'        => $dato['costop10'],
                   'costop11'        => $dato['costop11'],
-                  'costop12'        => $dato['costop12']
+                  'costop12'        => $dato['costop12'],
+                  'ProductoID'      => $idproducto
               ]);
               DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
