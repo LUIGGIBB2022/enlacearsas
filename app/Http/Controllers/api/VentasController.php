@@ -228,7 +228,7 @@ class VentasController extends Controller
                     'fechafactura'         => $factura['fechafactura'],
                     'horashabitacion'      => $factura['nrodehoras'],
                     'fechavencimiento'     => $factura['vencimiento'],
-                    'cufe'                 => isNull($factura['cufe'])?"":$factura['cufe'],
+                    'cufe'                 => is_Null($factura['cufe'])?"":$factura['cufe'],
                     'habitacion'           => is_null($factura['habitacion'])?"":$factura['habitacion'],
                     'fechadeentrada'       => $factura['fechaentrada'],
                     'fechadesalida'        => $factura['fechasalida'],
