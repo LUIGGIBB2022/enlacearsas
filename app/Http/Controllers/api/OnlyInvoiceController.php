@@ -31,7 +31,7 @@ class OnlyInvoiceController extends Controller
                 $fechafac       = $factura['fechafactura'];
                 $nit            = $factura['nit'];
                 $sucursal       = $factura['sucursal'];
-                $lapso          = $fechafac->format('Y')->$fechafac->format('m');
+                $lapso          = $fechafac->format('Y') . $fechafac->format('m');
                 $totalfactura   = $factura['valorfactura'] + $factura['valoriva'] + $factura['valorfactura'] + $factura['valoradicional'] -
                                   $factura['retencion'] - $factura['reteiva'] - $factura['reteica'] - $factura['dsctosproductos'] -
                                   $factura['dsctosadicionales'];
