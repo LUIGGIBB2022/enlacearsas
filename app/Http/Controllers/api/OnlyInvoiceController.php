@@ -127,7 +127,7 @@ class OnlyInvoiceController extends Controller
             return response()->json(
                 [
                  'status'           => '200',
-                 'msg'              => 'Salida Exitosa Detalle',
+                 'msg'              => 'Salida Exitosa Detalle ok',
                 ],Response::HTTP_ACCEPTED);
 
             $detfacturas        = $request->datadetalle;
