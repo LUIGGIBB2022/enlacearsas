@@ -123,7 +123,7 @@ class OnlyInvoiceController extends Controller
                     'kilometraje'           => is_null($factura['kilometraje'])?0:$factura['kilometraje'],
                     'numerodelreparto'      => is_null($factura['nreparto'])?0:$factura['nreparto'],
                     'montodelrecaudo'       => is_null($factura['recaudosrepartos'])?0:$factura['recaudosrepartos'],
-                    'saldoencartera '       => is_null($factura['saldocartera'])?0:$factura['saldocartera'],
+                    'saldoencartera '       => is_null($factura['saldoencartera'])?0:$factura['saldoencartera'],
                 ]);
 
                 // $numerofactura  = $factura['numerofactura'];
