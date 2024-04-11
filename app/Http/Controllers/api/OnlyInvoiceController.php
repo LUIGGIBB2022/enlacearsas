@@ -29,9 +29,10 @@ class OnlyInvoiceController extends Controller
                 $prefijo        = $factura['prefijo'];
                 $tipodcto       = $factura['tipodocumento'];
                 $fechafac       = $factura['fechafactura'];
+                $fecha          = Carbon::parse($factura['fechafactura']);
                 $nit            = $factura['nit'];
                 $sucursal       = $factura['sucursal'];
-                $lapso          = $fechafac->format('Y') . $fechafac->format('m');
+                $lapso          = $fecha->format('Y') . $fecha->format('m');
                 $totalfactura   = $factura['valorfactura'] + $factura['valoriva'] + $factura['valorfactura'] + $factura['valoradicional'] -
                                   $factura['retencion'] - $factura['reteiva'] - $factura['reteica'] - $factura['dsctosproductos'] -
                                   $factura['dsctosadicionales'];
