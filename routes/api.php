@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\OnlyInvoiceController;
 use App\Http\Controllers\api\VentasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,6 @@ Route::post('login', [AuthController::class,'login']);
 Route::group(['middleware'=>['auth:sanctum']],function()
 {
     Route::post('update-sales', [VentasController::class,'UpdateSales']);
-    Route::post('only-invoice', [VentasController::class,'OnlyInvoice']);
+    Route::post('only-invoice', [OnlyInvoiceController::class,'OnlyInvoice']);
 });
 
