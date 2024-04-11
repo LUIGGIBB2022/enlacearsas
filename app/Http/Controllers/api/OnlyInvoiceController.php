@@ -209,7 +209,7 @@ class OnlyInvoiceController extends Controller
         return response()->json(
             [
              'status'           => '200',
-             'msg'              => 'Salida Exitosa',
+             'msg'              => 'Salida Exitosa - Detalle Ok',
             ],Response::HTTP_ACCEPTED);
     }
 
@@ -346,7 +346,7 @@ class OnlyInvoiceController extends Controller
         return response()->json(
             [
              'status'           => '200',
-             'msg'              => 'Salida Exitosa - DetalleFinal',
+             'msg'              => 'Salida Exitosa',
             ],Response::HTTP_ACCEPTED);
     }
 }
