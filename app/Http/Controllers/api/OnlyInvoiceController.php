@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class OnlyInvoiceController extends Controller
 {
-    public function OnlyInvoices(Request $request):JsonResponse
+    public function OnlyInvoice(Request $request):JsonResponse
     {
         return response()->json(
             [
