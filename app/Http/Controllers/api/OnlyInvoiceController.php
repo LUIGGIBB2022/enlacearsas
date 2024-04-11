@@ -73,7 +73,7 @@ class OnlyInvoiceController extends Controller
                 'ivapropietario'        => !is_null($dato['ivapropietario'])?$dato['ivapropietario']:0,
                 'porcentajedeincremento' => !is_null($dato['porcentajedeincremento'])?$dato['porcentajedeincremento']:0,
                 'tipoclienteinmobiliaria' => !is_null($dato['tipoclienteinmobiliaria'])?$dato['tipoclienteinmobiliaria']:0,
-                'idlocal'               => !is_null($dato['localf'])?$dato['localf']:"",
+                'idlocal'               => !is_null($dato['local'])?$dato['local']:"",
                 'ocupacion'             => !is_null($dato['ocupacion'])?$dato['ocupacion']:"",
                 'nacionalidad'          => !is_null($dato['nacionalidad'])?$dato['nacionalidad']:"",
                 'observaciones'         => !is_null($dato['observaciones'])?$dato['observaciones']:"",
