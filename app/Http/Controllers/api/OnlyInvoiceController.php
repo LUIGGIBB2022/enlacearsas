@@ -146,7 +146,6 @@ class OnlyInvoiceController extends Controller
             [
              'status'           => '200',
              'msg'              => 'Salida Exitosa',
-             'request'      => $request->datafactura,
             ],Response::HTTP_ACCEPTED);
     }
 }
