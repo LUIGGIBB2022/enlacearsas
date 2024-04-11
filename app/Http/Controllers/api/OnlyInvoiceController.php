@@ -13,8 +13,9 @@ class OnlyInvoiceController extends Controller
     {
         return response()->json(
             [
-             'status'   => '200 OK',
-             'msg'      => 'Salida Pre Exitosa',
+             'status'           => '200 OK',
+             'msg'              => 'Salida Pre Exitosa',
+             'requestions'      => $request,
             ],Response::HTTP_ACCEPTED);
     }
 }
