@@ -17,20 +17,13 @@ class OnlyInvoiceController extends Controller
     public function OnlyInvoice(Request $request):JsonResponse
     {
         $contador = 0;
-        if (isset($request->datafatura))
+        if (isset($request->datafactura))
         {
             $facturas        = $request->datafactura;
-            $xcuantos         = count($facturas);
-
-            return response()->json(
-                [
-                 'status'           => '200 ok',
-                 'msg'              => 'Salida Exitosa revisión',
-                ],Response::HTTP_ACCEPTED);
+            $xcuantos        = count($facturas);
 
             foreach ($facturas as $factura)
             {
-
                 $contador++;
                 $numerofactura  = $factura['numerofactura'];
                 $prefijo        = $factura['prefijo'];
