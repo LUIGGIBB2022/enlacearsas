@@ -106,8 +106,8 @@ class OnlyInvoiceController extends Controller
                 'manejapuntos'          => $dato['tipopropiedad'],
                 'puntosacumulados'      => $dato['administracion'],
                 'retencionautomatica'   => $dato['retencionesautomaticas'],
-                'usuario_created'       => $dato['usuariocreated'],
-                'usuario_updated'       => $dato['usuarioupdated'],
+                'usuario_created'       => $dato['usuc_audi'],
+                'usuario_updated'       => $dato['usum_audi'],
               ]);
             }
             return response()->json(
