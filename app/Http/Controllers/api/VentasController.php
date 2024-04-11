@@ -412,11 +412,6 @@ class VentasController extends Controller
               $regproducto      = producto::where('codigo', $producto)->first();
               $idproducto       = !isset($regproducto->productoID)?0:$regproducto->productoID;
 
-              //'anodeproceso'    => $anoproc,
-              //'producto'        => $producto,
-              //'bodega'          => $bodega,
-              //'lote'            => !is_null($lote)?$lote:"",
-
               DB::statement('SET FOREIGN_KEY_CHECKS=0;');
               saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
               'lote' => $lote],
@@ -472,17 +467,10 @@ class VentasController extends Controller
           }
        }
 
-    //    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-    //    detalledefactura::where('detalledefacturas.fechadefactura',">=",$fechadesde)
-    //    ->where('detalledefacturas.fechadefactura',"<=",$fechahasta)
-    //    ->join('facturas','facturas.numerodefactura',"=",'detalledefacturas.numerodefactura')
-    //    ->update(['detalledefacturas.FacturasID' => getIdFactura(facturas.nit,facturas.sucursal)]);
-    //    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
        return response()->json(
        [
-        'status'   => '200OK',
+        'status'   => '200 OK',
         'msg'      => 'Salida Pre Exitosa',
-        'msg2'      => $contador,
        ],Response::HTTP_ACCEPTED);
     }
 }
