@@ -22,13 +22,6 @@ class OnlyInvoiceController extends Controller
         {
             $clientes   = $request->dataclientes;
 
-            return response()->json(
-                [
-                 'status'           => '200',
-                 'msg'              => 'Salida Exitosa',
-                 'cliente'              => $clientes,
-                ],Response::HTTP_ACCEPTED);
-
             foreach ($clientes as $dato)
             {
               $nit          =   $dato['nit'];
@@ -57,7 +50,7 @@ class OnlyInvoiceController extends Controller
                 'lista'                 => !is_null($dato['lista'])?$dato['lista']:"",
                 'vendedor'              => !is_null($dato['vendedor'])?$dato['vendedor']:"",
                 'ciudad'                => !is_null($dato['ciudad'])?$dato['ciudad']:"",
-                'categoria01'           => "",
+                'categoria01'           => "prueba invoice",
                 'categoria02'           => "",
                 'matriculamercantil'    => !is_null($dato['matriculamercantil'])?$dato['matriculamercantil']:"",
                 'obligacionesfiscales'  => !is_null($dato['rutobligaciones'])?$dato['rutobligaciones']:"",
