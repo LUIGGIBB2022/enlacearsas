@@ -20,13 +20,14 @@ class OnlyInvoiceController extends Controller
         $contador = 0;
         if (isset($request->dataclientes))
         {
+            $clientes   = $request->dataclientes;
+
             return response()->json(
                 [
                  'status'           => '200',
-                 'msg'              => 'Salida Exitosa Clientes',
+                 'msg'              => 'Salida Exitosa',
+                 'cliente'              => $clientes,
                 ],Response::HTTP_ACCEPTED);
-
-            $clientes   = $request->dataclientes;
 
             foreach ($clientes as $dato)
             {
