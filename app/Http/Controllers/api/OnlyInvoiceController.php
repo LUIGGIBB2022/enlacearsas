@@ -24,6 +24,11 @@ class OnlyInvoiceController extends Controller
 
             foreach ($facturas as $factura)
             {
+                return response()->json(
+                    [
+                     'status'           => '200 ok',
+                     'msg'              => 'Salida Exitosa revisión',
+                    ],Response::HTTP_ACCEPTED);
                 $contador++;
                 $numerofactura  = $factura['numerofactura'];
                 $prefijo        = $factura['prefijo'];
