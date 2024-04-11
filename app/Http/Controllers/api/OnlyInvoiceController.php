@@ -346,7 +346,7 @@ class OnlyInvoiceController extends Controller
         return response()->json(
             [
              'status'           => '200',
-             'msg'              => 'Salida Exitosa',
+             'msg'              => 'Salida Exitosa - DetalleFinal',
             ],Response::HTTP_ACCEPTED);
     }
 }
