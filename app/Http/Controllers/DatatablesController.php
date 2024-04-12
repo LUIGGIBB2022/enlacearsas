@@ -259,7 +259,9 @@ class DatatablesController extends Controller
                 ->leftjoin('clientes', 'facturas.ClientesID', '=', 'clientes.clientesID')
                 ->leftjoin('vendedor', 'clientes.vendedor', '=', 'vendedor.codigo')
                 ->leftjoin('centrooperativo', 'centrooperativo.codigo', '=', 'facturas.centrooper')
-                ->orderBy('fechafactura','centrooperativo.nombre')->get();
+                ->orderBy('fechafactura')
+                ->orderBy('nombredelaciudad')
+                ->get();
 
         // $ventascons = $ventasfactcons->union($ventasremcons);
          $ventascons = $ventasfactcons;
