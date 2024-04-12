@@ -261,6 +261,7 @@ class DatatablesController extends Controller
                 ->leftjoin('centrooperativo', 'centrooperativo.codigo', '=', 'facturas.centrooper')
                 ->orderBy('fechafactura')
                 ->orderBy('nombredelaciudad')
+                ->orderBy('numerodefactura')
                 ->get();
 
         // $ventascons = $ventasfactcons->union($ventasremcons);
