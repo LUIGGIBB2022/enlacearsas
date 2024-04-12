@@ -246,6 +246,7 @@ class DatatablesController extends Controller
                 ->leftjoin('vendedor', 'clientes.vendedor', '=', 'vendedor.codigo')
                 ->leftjoin('detallemiscelaneos', 'clientes.ciudad', '=', 'detallemiscelaneos.codigo');
 
+             //   ->where('detallemiscelaneos.codigoid','=','117')
 
         $ventasfactcons = DB::table('facturas')->select('facturas.FacturasID as id','facturas.fechafactura','facturas.fechavencimiento','facturas.numerodefactura','facturas.tipodedocumento','facturas.prefijo','facturas.nombreventa',
                 'facturas.valorfactura','facturas.valoriva','facturas.totalfactura','facturas.valoradicional','facturas.descuentosproductos','facturas.descuentosadicionales','facturas.retefuente','facturas.reteiva','facturas.reteica',
@@ -254,7 +255,6 @@ class DatatablesController extends Controller
                 ->selectRaw('CASE facturas.estado WHEN 2 THEN facturas.totalfactura ELSE 0 END AS toteliminado')
                 ->selectRaw('CONCAT(LPAD(facturas.numerodefactura, 8, "0"),">",facturas.tipodedocumento) AS consecutivofactura')
                 ->whereBetween('fechafactura', [$fechadesde,$fechahasta])
-                ->where('detallemiscelaneos.codigoid','=','117')
                 ->unionAll($ventasremcons)
                 ->leftjoin('clientes', 'facturas.ClientesID', '=', 'clientes.clientesID')
                 ->leftjoin('vendedor', 'clientes.vendedor', '=', 'vendedor.codigo')
