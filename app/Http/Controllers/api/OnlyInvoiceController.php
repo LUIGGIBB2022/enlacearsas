@@ -179,7 +179,7 @@ class OnlyInvoiceController extends Controller
                     'garantia'              => is_null($detalle['garantia'])?"":$detalle['garantia'],
                     'tipodecliente'         => is_null($detalle['tipocliente'])?"":$detalle['tipocliente'],
                     'rutadeventa'           => is_null($detalle['ruta'])?"":$detalle['ruta'],
-                    'zonadeventa'           => is_null($detalle['zona'])?"":$detalle['zona'],
+                    'zonadeventa'           => "",
                     'centrooper'            => $detalle['centrooper'],
                     'proyecto'              => is_null($detalle['proyecto'])?"":$detalle['proyecto'],
                     'sproyecto'             => is_null($detalle['sproyecto'])?"":$detalle['sproyecto'],
