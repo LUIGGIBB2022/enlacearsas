@@ -329,9 +329,9 @@ class OnlyInvoiceController extends Controller
                 $clientesID     = $clientes->clientesID;
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
                 detalledefactura::where('detalledefacturas.numerodefactura',"=",$numerofactura)
-                ->where('detalledefacturas.tipodedocumento',"=",$tipodcto)
-                ->where('detalledefacturas.prefijo',"=",$prefijo)
-                ->update(['detalledefacturas.FacturasID' => $facturasID, 'detalledefacturas.ClientesID' => $clientesID]);
+                    ->where('detalledefacturas.tipodedocumento',"=",$tipodcto)
+                    ->where('detalledefacturas.prefijo',"=",$prefijo)
+                    ->update(['detalledefacturas.FacturasID' => $facturasID, 'detalledefacturas.ClientesID' => $clientesID]);
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             }
        }
