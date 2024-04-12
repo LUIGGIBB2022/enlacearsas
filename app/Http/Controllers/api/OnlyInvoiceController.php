@@ -324,9 +324,6 @@ class OnlyInvoiceController extends Controller
                     'montodelrecaudo'       => is_null($factura['recaudosrepartos'])?0:$factura['recaudosrepartos'],
                     'saldoencartera '       => is_null($factura['saldoencartera'])?0:$factura['saldoencartera'],
                 ]);
-                $numerofactura  = $factura['numerofactura'];
-                $prefijo        = $factura['prefijo'];
-                $tipodcto       = $factura['tipodocumento'];
                 $facturasID     = $reg_fact->FacturasID;
                 $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
                 $clientesID     = $clientes->clientesID;
