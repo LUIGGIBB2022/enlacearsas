@@ -124,7 +124,7 @@
                                 <th class = "enc_datatable">PRE</th>
                                 <th class = "enc_datatable">Nombre del Cliente</th>
                                 <th class = "enc_datatable">Vendedor</th>
-                                <th class = "enc_datatable">Ciudad</th>
+                                <th class = "enc_datatable">CentroOper</th>
                                 <th class = "enc_datatable">Total Factura</th>
                                 <th class = "enc_datatable">Estado</th>
                                 <th class = "enc_datatable" style="width:5%;">Acción</th>
