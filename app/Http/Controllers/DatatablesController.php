@@ -249,7 +249,7 @@ class DatatablesController extends Controller
 
         $ventasfactcons = DB::table('facturas')->select('facturas.FacturasID as id','facturas.fechafactura','facturas.fechavencimiento','facturas.numerodefactura','facturas.tipodedocumento','facturas.prefijo','facturas.nombreventa',
                 'facturas.valorfactura','facturas.valoriva','facturas.totalfactura','facturas.valoradicional','facturas.descuentosproductos','facturas.descuentosadicionales','facturas.retefuente','facturas.reteiva','facturas.reteica',
-                'facturas.descuentosproductos','detallemiscelaneos.descripcion as nombredelaciudad','vendedor.nombre as nombrevendedor','clientes.vendedor')
+                'facturas.descuentosproductos','centrooperativo.nombre as nombredelaciudad','vendedor.nombre as nombrevendedor','clientes.vendedor')
                 ->selectRaw('CASE facturas.estado WHEN 1 THEN "Activa     " ELSE "Eliminada   " END AS estadodocumento')
                 ->selectRaw('CASE facturas.estado WHEN 2 THEN facturas.totalfactura ELSE 0 END AS toteliminado')
                 ->selectRaw('CONCAT(LPAD(facturas.numerodefactura, 8, "0"),">",facturas.tipodedocumento) AS consecutivofactura')
@@ -258,7 +258,7 @@ class DatatablesController extends Controller
                 ->unionAll($ventasremcons)
                 ->leftjoin('clientes', 'facturas.ClientesID', '=', 'clientes.clientesID')
                 ->leftjoin('vendedor', 'clientes.vendedor', '=', 'vendedor.codigo')
-                ->leftjoin('detallemiscelaneos', 'clientes.ciudad', '=', 'detallemiscelaneos.codigo')
+                ->leftjoin('centrooperativo', 'centrooperativo.codigo', '=', 'facturas.centrooper')
                 ->orderBy('fechafactura')->get();
 
         // $ventascons = $ventasfactcons->union($ventasremcons);
