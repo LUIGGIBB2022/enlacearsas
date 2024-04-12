@@ -324,7 +324,7 @@ class OnlyInvoiceController extends Controller
                     'montodelrecaudo'       => is_null($factura['recaudosrepartos'])?0:$factura['recaudosrepartos'],
                     'saldoencartera '       => is_null($factura['saldoencartera'])?0:$factura['saldoencartera'],
                 ]);
-                $facturasID     = factura::latest('id')->first();
+                $facturasID     = factura::latest('facturasid')->first();
                 $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
                 $clientesID     = $clientes->clientesID;
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
