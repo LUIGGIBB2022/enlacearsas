@@ -123,9 +123,9 @@ class OnlyInvoiceController extends Controller
     {
 
        $contador = 0;
-       if (isset($request->detalle))
+       if (isset($request->datadetalle))
        {
-            $detalles         = $request->detalle;
+            $detalles         = $request->datadetalle;
             $xcuantos         = count($detalles);
             $contador = 0;
             $fechadesde = "";
@@ -212,8 +212,6 @@ class OnlyInvoiceController extends Controller
              'msg'              => 'Salida Exitosa - Detalle Ok',
             ],Response::HTTP_ACCEPTED);
     }
-
-
 
     public function OnlyInvoice(Request $request):JsonResponse
     {
