@@ -472,4 +472,13 @@ class VentasController extends Controller
         'msg'      => 'Salida Pre Exitosa',
        ],Response::HTTP_ACCEPTED);
     }
+
+    public function ConsolidatedSalesCenter(Request $request):JsonResponse
+    {
+        return response()->json(
+            [
+             'status'   => '200',
+             'msg'      => 'Ventas Consolidadas',
+            ],Response::HTTP_ACCEPTED);
+    }
 }

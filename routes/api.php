@@ -25,6 +25,7 @@ Route::post('login', [AuthController::class,'login']);
 Route::group(['middleware'=>['auth:sanctum']],function()
 {
     Route::post('update-sales', [VentasController::class,'UpdateSales']);
+    Route::post('consolidated-sales-center', [VentasController::class,'ConsolidatdeSalesCenter']);
     Route::post('only-invoice', [OnlyInvoiceController::class,'OnlyInvoice']);
     Route::post('only-client', [OnlyInvoiceController::class,'OnlyClient']);
     Route::post('only-detinvoice', [OnlyInvoiceController::class,'OnlyDetInvoice']);
