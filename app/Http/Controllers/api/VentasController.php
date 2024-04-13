@@ -478,13 +478,14 @@ class VentasController extends Controller
         $mes  = $request->mes;
         $anop  = $request->año;
         $ventas = factura::select(
+            DB::raw('centrooper'),
             DB::raw('sum(totalfactura) as totalventas'),
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months")
         )
             ->where('estado','=',1)
             ->whereMonth('fechafactura',$mes)
             ->whereYear('fechafactura',$anop )
-            ->groupBy('months')
+            ->groupBy('centrooper','months')
             ->get();
 
         return response()->json(
