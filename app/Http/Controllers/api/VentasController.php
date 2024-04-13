@@ -475,10 +475,18 @@ class VentasController extends Controller
 
     public function ConsolidatedSalesCenter(Request $request):JsonResponse
     {
+        $ventas = factura::select(
+            DB::raw('sum(totalfactura) as totalventas'),
+            DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months")
+        )
+            ->groupBy('months')
+            ->get();
+
         return response()->json(
             [
              'status'   => '200',
              'msg'      => 'Ventas Consolidadas 2024',
+             'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
     }
 }
