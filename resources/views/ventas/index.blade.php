@@ -69,8 +69,7 @@
          }
          .campo_fecha
          {
-            text-align:
-            right;
+            text-align:center;
             font-size:12px;
          }
 
