@@ -499,4 +499,31 @@ class VentasController extends Controller
              'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
     }
+
+    public function DailySalesCenter(Request $request):JsonResponse
+    {
+
+        DB::statement("SET lc_time_names = 'es_Es';");
+        $fecha  = $request->fechadeconsulta;
+        $anop  = $request->año;
+        $ventas = factura::select(
+            DB::raw('centrooperativo.nombre as centrodeoperacion'),
+            DB::raw('sum(totalfactura) as totalventas'),
+            DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
+            DB::raw("DATE_FORMAT(fechafactura,'%m') as mes"),
+            DB::raw("fechafactura as dia")
+        )
+            ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
+            ->where('facturas.estado','=',1)
+            ->where('fechafactura',$fecha)
+            ->groupBy('centrodeoperacion','months')
+            ->get();
+
+        return response()->json(
+            [
+             'status'   => '200',
+             'msg'      => 'Ventas Diarias Consolidadas por Centros de operaciones (' . $fecha .')',
+             'ventas'   => $ventas
+            ],Response::HTTP_ACCEPTED);
+    }
 }
