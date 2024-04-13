@@ -219,6 +219,9 @@ class VentasController extends Controller
                 $nit            = $factura['nit'];
                 $sucursal       = $factura['sucursal'];
 
+                $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
+                $clientesID     = $clientes->clientesID;
+
                 $reg_fact       = factura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'tipodedocumento' => $tipodcto,'fechafactura' => $fechafac],
                 [
                         //$regfacturas = new factura;
@@ -274,7 +277,7 @@ class VentasController extends Controller
                     'usuario_created'      => $factura['usuariocreated'],
                     'usuario_updated'      => $factura['usuarioupdated'],
                      //-- Actualizar Campos obligatorios
-                    'clientesid'            => 1,
+                    'clientesid'            => $clientesID,
                     'vendedorid'            => 1,
                     'horadefactura'         => $factura['horafactura'],
                     'cuenta'                => is_null($factura['cuenta'])?"":$factura['cuenta'],
@@ -317,8 +320,6 @@ class VentasController extends Controller
                 $prefijo        = $factura['prefijo'];
                 $tipodcto       = $factura['tipodocumento'];
                 $facturasID     = $reg_fact->FacturasID;
-                $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
-                $clientesID     = $clientes->clientesID;
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
                 detalledefactura::where('detalledefacturas.numerodefactura',"=",$numerofactura)
                 ->where('detalledefacturas.tipodedocumento',"=",$tipodcto)
@@ -440,7 +441,6 @@ class VentasController extends Controller
                   'usuario_updated' => $dato['usuarioupdated'],
               ]);
               DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
            }
        }
 
@@ -463,7 +463,6 @@ class VentasController extends Controller
                'usuario_created'  => $dato['usuariocreated'],
                'usuario_updated'  => $dato['usuarioupdated'],
             ]);
-
           }
        }
 

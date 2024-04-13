@@ -236,6 +236,9 @@ class OnlyInvoiceController extends Controller
                                   $factura['retencion'] - $factura['reteiva'] - $factura['reteica'] - $factura['dsctosproductos'] -
                                   $factura['dsctosadicionales'];
 
+                $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
+                $clientesID     = $clientes->clientesID;
+
                 $reg_fact       = factura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'tipodedocumento' => $tipodcto,'fechafactura' => $fechafac],
                 [
                     'horashabitacion'      => $factura['horahabitac'],
@@ -286,7 +289,7 @@ class OnlyInvoiceController extends Controller
                     'usuario_created'      => $factura['usuc_audi'],
                     'usuario_updated'      => $factura['usum_audi'],
                      //-- Actualizar Campos obligatorios
-                    'clientesid'            => 1,
+                    'clientesid'            => $clientesID,
                     'vendedorid'            => 1,
                     'horadefactura'         => $factura['horafactura'],
                     'cuenta'                => is_null($factura['cuenta'])?"":$factura['cuenta'],
@@ -324,9 +327,11 @@ class OnlyInvoiceController extends Controller
                     'montodelrecaudo'       => is_null($factura['recaudosrepartos'])?0:$factura['recaudosrepartos'],
                     'saldoencartera '       => is_null($factura['saldoencartera'])?0:$factura['saldoencartera'],
                 ]);
-                $facturasID     = factura::latest('facturasid')->first();
-                $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
-                $clientesID     = $clientes->clientesID;
+
+                DB::commit();
+                $facturas       = factura::latest('facturasid')->first();
+                $facturasID     = $facturas->FacturasID;
+
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
                 detalledefactura::where('detalledefacturas.numerodefactura',"=",$numerofactura)
                     ->where('detalledefacturas.tipodedocumento',"=",$tipodcto)
@@ -335,8 +340,6 @@ class OnlyInvoiceController extends Controller
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             }
        }
-
-
 
         return response()->json(
             [
