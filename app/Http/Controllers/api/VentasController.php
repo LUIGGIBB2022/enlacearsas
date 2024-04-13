@@ -479,6 +479,7 @@ class VentasController extends Controller
             DB::raw('sum(totalfactura) as totalventas'),
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months")
         )
+            ->where('estado', '=',1)
             ->groupBy('months')
             ->get();
 
