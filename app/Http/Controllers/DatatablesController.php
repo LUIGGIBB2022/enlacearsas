@@ -598,8 +598,8 @@ class DatatablesController extends Controller
                 ->leftjoin('producto', 'saldosdeinventarios.producto', '=', 'producto.codigo')
                 ->leftjoin('detallemiscelaneos', 'producto.grupo', '=', 'detallemiscelaneos.codigo')
                 ->leftjoin('detalledelistas', 'saldosdeinventarios.producto', '=', 'detalledelistas.producto')
-                ->orderBy('producto.descripcion')
                 ->orderBy('saldosdeinventarios.bodega')
+                ->orderBy('producto.descripcion')
                 ->get();
 
         return datatables()->of( $productos)
