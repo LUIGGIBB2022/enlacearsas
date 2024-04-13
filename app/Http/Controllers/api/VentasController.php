@@ -483,6 +483,7 @@ class VentasController extends Controller
             DB::raw('centrooperativo.nombre as centrodeoperacion'),
             DB::raw('sum(totalfactura) as totalventas'),
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months")
+            DB::raw("DATE_FORMAT(fechafactura,'%m') as mes")
         )
             ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
             ->where('facturas.estado','=',1)
