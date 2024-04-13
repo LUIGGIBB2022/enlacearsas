@@ -475,11 +475,13 @@ class VentasController extends Controller
 
     public function ConsolidatedSalesCenter(Request $request):JsonResponse
     {
+        $mes = $request->mes;
         $ventas = factura::select(
             DB::raw('sum(totalfactura) as totalventas'),
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months")
         )
-            ->where('estado', '=',1)
+            ->where('estado','=',1)
+            ->whereMonth('fechafactura',$mes)
             ->groupBy('months')
             ->get();
 
