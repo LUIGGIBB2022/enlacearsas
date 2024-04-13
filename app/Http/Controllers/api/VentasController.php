@@ -475,6 +475,8 @@ class VentasController extends Controller
 
     public function ConsolidatedSalesCenter(Request $request):JsonResponse
     {
+
+        DB::statement("SET lc_time_names = 'es_Es';");
         $mes  = $request->mes;
         $anop  = $request->año;
         $ventas = factura::select(
