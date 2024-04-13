@@ -495,7 +495,7 @@ class VentasController extends Controller
         return response()->json(
             [
              'status'   => '200',
-             'msg'      => 'Ventas Consolidadas 2024',
+             'msg'      => 'Ventas Consolidadas (' . $anop .')',
              'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
     }
