@@ -485,7 +485,7 @@ class VentasController extends Controller
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
             DB::raw("DATE_FORMAT(fechafactura,'%m') as mes")
         )
-            ->leftjoin("'centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo'")
+            ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
             ->where('facturas.estado','=',1)
             ->whereMonth('fechafactura',$mes)
             ->whereYear('fechafactura',$anop )
