@@ -481,11 +481,11 @@ class VentasController extends Controller
         $anop  = $request->año;
         $ventas = factura::select(
             DB::raw('centrooperativo.nombre as centrodeoperacion'),
-            DB::raw('sum(totalfactura) as totalventas'),
+            DB::raw("sum(totalfactura) as totalventas"),
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
             DB::raw("DATE_FORMAT(fechafactura,'%m') as mes")
         )
-            ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
+            ->leftjoin("'centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo'")
             ->where('facturas.estado','=',1)
             ->whereMonth('fechafactura',$mes)
             ->whereYear('fechafactura',$anop )
