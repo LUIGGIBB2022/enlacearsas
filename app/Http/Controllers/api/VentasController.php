@@ -492,11 +492,13 @@ class VentasController extends Controller
             ->groupBy('centrodeoperacion','months')
             ->get();
 
+        $ventasjs = json_encode($ventas);
+
         return response()->json(
             [
              'status'   => '200',
              'msg'      => 'Ventas Consolidadas por Centros de operaciones (' . $anop .')',
-             'ventas'   => $ventas
+             'ventas'   => $ventasjs,
             ],Response::HTTP_ACCEPTED);
     }
 
@@ -518,6 +520,7 @@ class VentasController extends Controller
             ->where('fechafactura',$fecha)
             ->groupBy('centrodeoperacion','months')
             ->get();
+
 
         return response()->json(
             [
