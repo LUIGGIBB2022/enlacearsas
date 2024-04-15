@@ -492,7 +492,7 @@ class VentasController extends Controller
             ->groupBy('centrodeoperacion','months')
             ->get();
 
-        $ventasjs = json_encode($ventas);
+        $ventasjs = response()->json($ventas);
 
         return response()->json(
             [
