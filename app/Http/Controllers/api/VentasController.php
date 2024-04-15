@@ -490,9 +490,8 @@ class VentasController extends Controller
             ->whereMonth('fechafactura',$mes)
             ->whereYear('fechafactura',$anop )
             ->groupBy('centrodeoperacion','months')
-            ->get();
-
-        $ventasjs = response()->json($ventas);
+            ->response()->json();
+        $ventasjs =$ventas;
 
         return response()->json(
             [
