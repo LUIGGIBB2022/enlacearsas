@@ -503,7 +503,7 @@ class VentasController extends Controller
             [
              'status'       => '200',
              'msg'          => 'Ventas Consolidadas por Centros de operaciones (' . $anop .')',
-             'grantotal'    => $tot,
+             'grantotal'    => (string) $tot,
              'ventas'   => $ventasjs,
             ],Response::HTTP_ACCEPTED);
     }
