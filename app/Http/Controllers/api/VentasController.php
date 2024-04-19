@@ -481,7 +481,7 @@ class VentasController extends Controller
         $anop  = $request->año;
         $ventas = factura::select(
             DB::raw('centrooperativo.nombre as centrodeoperacion'),
-            DB::raw("sum(totalfactura) as totalventas"),
+            DB::raw("sum(int(totalfactura)) as totalventas"),
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
             DB::raw("DATE_FORMAT(fechafactura,'%m') as mes")
         )
