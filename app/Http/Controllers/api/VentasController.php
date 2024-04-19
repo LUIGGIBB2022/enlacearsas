@@ -493,7 +493,7 @@ class VentasController extends Controller
             ->get();
 
         $ventasjs =$ventas;
-        $tot = 0;
+        $tot = 0.00;
         foreach($ventas as $dato)
         {
            $tot = $tot + $dato->totalventas;
