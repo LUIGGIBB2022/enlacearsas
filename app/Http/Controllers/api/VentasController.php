@@ -410,7 +410,7 @@ class VentasController extends Controller
               $bodega           = !is_null($dato['bodega'])?$dato['bodega']:"";
               $lote             = !is_null($dato['lote'])?$dato['lote']:"";
               $anoproc          = $ano;
-              $regproducto      = producto::where('codigo', $producto)->first();
+              $regproducto      = producto::where('codigo', $producto)->get()->first();
               $idproducto       = isset($regproducto->productoID)?$regproducto->productoID:0;
 
               DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -493,11 +493,17 @@ class VentasController extends Controller
             ->get();
 
         $ventasjs =$ventas;
+        $tot = 0;
+        foreach($ventas as $dato)
+        {
+           $tot = $tot + $dato->totalventas;
+        }
 
         return response()->json(
             [
-             'status'   => '200',
-             'msg'      => 'Ventas Consolidadas por Centros de operaciones (' . $anop .')',
+             'status'       => '200',
+             'msg'          => 'Ventas Consolidadas por Centros de operaciones (' . $anop .')',
+             'grantotal'    => $tot,
              'ventas'   => $ventasjs,
             ],Response::HTTP_ACCEPTED);
     }
