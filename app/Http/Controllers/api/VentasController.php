@@ -404,7 +404,9 @@ class VentasController extends Controller
                $nit             = $detalle['nit'];
                $cantidad1       = $detalle['peso']>0?$detalle['peso']:0;
                $cantidad1       = $detalle['unidad']>0?$detalle['unidad']:$cantidad1;
-               $reg_fact        = movimientosdeinventario::updateOrCreate(['fechamovimiento'=>$fechamvto, 'consecutivo'=>$consecutivo, 'tipodedocumento' => $tipodocumento,
+               if ($producto != "")
+               {
+                 $reg_fact        = movimientosdeinventario::updateOrCreate(['fechamovimiento'=>$fechamvto, 'consecutivo'=>$consecutivo, 'tipodedocumento' => $tipodocumento,
                                  'concepto' => $concepto,'nit' => $nit, 'producto'=>$producto,'bodega'=>$bodega,'idregistro'=>$idregistro],
                     [
                         'fechamovimiento'       => $fechamvto,
@@ -453,6 +455,7 @@ class VentasController extends Controller
                         'usuario_created'       => $detalle['usuariocreated'],
                         'usuario_updated'       => $detalle['usuarioupdated'],
                     ]);
+               }
            }
        }
 
