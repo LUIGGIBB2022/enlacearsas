@@ -404,7 +404,7 @@ class VentasController extends Controller
                $nit             = $detalle['nit'];
                $cantidad1       = $detalle['peso']>0?$detalle['peso']:0;
                $cantidad1       = $detalle['unidad']>0?$detalle['unidad']:$cantidad1;
-               if ($producto != "")
+               if (strlen($producto) != 0)
                {
                  $reg_fact        = movimientosdeinventario::updateOrCreate(['fechamovimiento'=>$fechamvto, 'consecutivo'=>$consecutivo, 'tipodedocumento' => $tipodocumento,
                                  'concepto' => $concepto,'nit' => $nit, 'producto'=>$producto,'bodega'=>$bodega,'idregistro'=>$idregistro],
