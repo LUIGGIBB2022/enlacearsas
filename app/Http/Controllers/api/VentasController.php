@@ -24,6 +24,64 @@ class VentasController extends Controller
     {
 
         $contador = 0;
+        if (isset($request->productos))
+        {
+            $productos  = $request->productos;
+
+            foreach ($productos as $dato)
+            {
+              $codigo          =   $dato['codigo'];
+              $reg_info  = producto::updateOrCreate(['codigo'=>$codigo],
+              [
+                'codigobarra'                   => $dato['codigobarra'],
+                'codicorto  '                   => "",
+                'descripcion'                   => $dato['descripcion'],
+                'presentacion'                  => $dato['presentacion'],
+                'porcentajeiva'                 => $dato['porcentajeiva'],
+                'factordeconversion'            => $dato['factorconversion'],
+                'factorderentabilidad'          => $dato['factorrentabilidad'],
+                'factorlimitededescuentos'      => $dato['factorlimitedescuentos'],
+                'valorultimacompra'             => $dato['valorcompra'],
+                'valorventa'                    => $dato['valorventa'],
+                'costopromedio'                 => $dato['valorcosteo'],
+                'fechaultimacompra'             => $dato['fechaultimacompra'],
+                'fechaultimacompra'             => $dato['fechaultimacompra'],
+                'unidadesxempaque'              => $dato['unidadxemb'],
+                'medida'                        => $dato['medida'],
+                'grupo'                         => $dato['grupo'],
+                'subgrupo'                      => $dato['subgrupo'],
+                'division'                      => $dato['division'],
+                'familia'                       => $dato['familia'],
+                'referencia'                    => $dato['referencia'],
+                'agruparen'                     => $dato['agruparen'],
+                'categoria01'                   => $dato['categoria01'],
+                'categoria02'                   => $dato['categoria02'],
+                'categoria03'                   => $dato['categoria03'],
+                'tipodeproducto'                => $dato['tipoproducto'],
+                'tipodecontrol'                 => $dato['tipocontrol'],
+                'tipocalculo'                   => $dato['tipocalculo'],
+                'ubicacion'                     => $dato['ubicacion'],
+                'stockminimo'                   => $dato['minimo'],
+                'stockmaximo'                   => $dato['maximo'],
+                'facturable'                    => $dato['manejapeso'],
+                'requierebascula'               => $dato['estado01'],
+                'pesodelproducto'               => $dato['pesoproducto'],
+                'impuestoalconsumo'             => $dato['impuestoconsumo'],
+                'codigocie10'                   => $dato['codigocie10'],
+                'codigoalterno'                 => $dato['codigoalterno'],
+                'codigocups'                    => $dato['codigocups'],
+                'codigocum'                     => $dato['codigocum'],
+                'registroinvima'                => $dato['registroinvima'],
+                'estado'                        => $dato['estado'],
+                'estado01'                      => $dato['estado01'],
+                'rutafoto'                      => $dato['rutafoto'],
+                'codigobarracaja'               => "",
+                'usuario_created'               => $dato['usuariocreated'],
+                'usuario_updated'               => $dato['usuarioupdated'],
+              ]);
+            }
+         }
+        $contador = 0;
         if (isset($request->clientes))
         {
             $clientes   = $request->clientes;
