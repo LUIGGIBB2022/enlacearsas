@@ -473,35 +473,37 @@ class VentasController extends Controller
               $anoproc          = $ano;
               $regproducto      = producto::where('codigo', $producto)->get()->first();
               $idproducto       = isset($regproducto->productoID)?$regproducto->productoID:0;
-
-              DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-              saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
-              'lote' => $lote],
-              [
-                  'cantidad'        => $dato['cantidad'],
-                  'cantidad1'       => $dato['cantidad2'],
-                  'costopromedio'   => $dato['costopromedio'],
-                  'ultimocosto'     => $dato['ultimocosto'],
-                  'saldoanterior'   => $dato['saldoanterior'],
-                  'saldoanterior1'  => $dato['saldoanterior2'],
-                  'costop00'        => $dato['costop00'],
-                  'costop01'        => $dato['costop01'],
-                  'costop02'        => $dato['costop02'],
-                  'costop03'        => $dato['costop03'],
-                  'costop04'        => $dato['costop04'],
-                  'costop05'        => $dato['costop05'],
-                  'costop06'        => $dato['costop06'],
-                  'costop07'        => $dato['costop07'],
-                  'costop08'        => $dato['costop08'],
-                  'costop09'        => $dato['costop09'],
-                  'costop10'        => $dato['costop10'],
-                  'costop11'        => $dato['costop11'],
-                  'costop12'        => $dato['costop12'],
-                  'ProductoID'      => $idproducto,
-                  'usuario_created' => $dato['usuariocreated'],
-                  'usuario_updated' => $dato['usuarioupdated'],
-              ]);
-              DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+              if (strlen($producto) != 0)
+              {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+                saldosdeinventario::updateOrCreate(['anodeproceso'=>$anoproc, 'producto'=>$producto, 'bodega' => $bodega,
+                'lote' => $lote],
+                [
+                    'cantidad'        => $dato['cantidad'],
+                    'cantidad1'       => $dato['cantidad2'],
+                    'costopromedio'   => $dato['costopromedio'],
+                    'ultimocosto'     => $dato['ultimocosto'],
+                    'saldoanterior'   => $dato['saldoanterior'],
+                    'saldoanterior1'  => $dato['saldoanterior2'],
+                    'costop00'        => $dato['costop00'],
+                    'costop01'        => $dato['costop01'],
+                    'costop02'        => $dato['costop02'],
+                    'costop03'        => $dato['costop03'],
+                    'costop04'        => $dato['costop04'],
+                    'costop05'        => $dato['costop05'],
+                    'costop06'        => $dato['costop06'],
+                    'costop07'        => $dato['costop07'],
+                    'costop08'        => $dato['costop08'],
+                    'costop09'        => $dato['costop09'],
+                    'costop10'        => $dato['costop10'],
+                    'costop11'        => $dato['costop11'],
+                    'costop12'        => $dato['costop12'],
+                    'ProductoID'      => $idproducto,
+                    'usuario_created' => $dato['usuariocreated'],
+                    'usuario_updated' => $dato['usuarioupdated'],
+                ]);
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+              }
            }
        }
 
