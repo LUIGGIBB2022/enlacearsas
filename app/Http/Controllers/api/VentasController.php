@@ -408,6 +408,8 @@ class VentasController extends Controller
             documentosdeinventario::updateOrCreate(['consecutivo'=>$consecutivo, 'concepto'=>$concepto,
                               'cptoclase' => $cptoclase,'nit' => $nit,'sucursal'=>$sucursal,'fechademovimiento'=>$fecha],
             [
+                'nit'                       => $documento['nit'],
+                'sucursal'                  => $documento['sucursal'],
                 'facturadecompra'           => $documento['nrodefactura'],
                 'prefijo'                   => is_null($documento['prefijo'])?"":$documento['prefijo'],
                 'ordendecompra'             => is_null($orden)?"":$orden,
