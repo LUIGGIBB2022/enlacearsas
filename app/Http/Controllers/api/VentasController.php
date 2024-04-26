@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\centrodeoperacion;
 use App\Models\cliente;
 use App\Models\detalledefactura;
+use App\Models\documentosdeinventario;
 use App\Models\factura;
 use App\Models\movimientosdeinventario;
 use App\Models\producto;
@@ -390,6 +391,85 @@ class VentasController extends Controller
        $contador = 0;
        if (isset($request->dctosinv))
        {
+
+        $documentos     = $request->dctosinv;
+        foreach ($documentos as $documento)
+        {
+            $contador++;
+            $consecutivo    = $documento['consecutivo'];
+            $concepto       = $documento['concepto'];
+            $cptoclase      = $documento['cptoclase'];
+            $nit            = $documento['nit'];
+            $sucursal       = $documento['sucursal'];
+            $fecha          = $documento['fecha'];
+            $orden          = strval($documento['nrodeorden']);
+            $totaldcto      = $documento['valordcto'] + $documento['valoriva'] + $documento['valoradicional'] - $documento['valordescuento']
+                              - $documento['valordescuentoadicional'] - $documento['valorrtefte'] - $documento['valorrteiva'] - $documento['valorrteica'];
+            documentosdeinventario::updateOrCreate(['consecutivo'=>$consecutivo, 'concepto'=>$concepto,
+                              'cptoclase' => $cptoclase,'nit' => $nit,'sucursal'=>$sucursal,'fechademovimiento'=>$fecha],
+            [
+                'facturadecompra'           => $documento['nrodefactura'],
+                'prefijo'                   => is_null($documento['prefijo'])?"":$documento['prefijo'],
+                'ordendecompra'             => is_null($orden)?"":$orden,
+                'documentodecompra'         => is_null($documento['dctofactura'])?"":$documento['dctodecompra'],
+                'fechadefactura'            => $documento['fechadefactura'],
+                'fechadevencimiento'        => $documento['fechadevencimiento'],
+                'valorfactura'              => $documento['valordcto'],
+                'descuentoproductos'        => $documento['valordescuento'],
+                'descuentoadicional'        => $documento['valordescuentoadicional'],
+                'valoriva'                  => $documento['valoriva'],
+                'valoradicional'            => $documento['valoradicional'],
+                'retefuente'                => $documento['valorrtefte'],
+                'reteiva'                   => $documento['valorrteiva'],
+                'reteica'                   => $documento['valorrteica'],
+                'otrasret1'                 => $documento['otrasretenciones1'],
+                'otrasret2'                 => $documento['otrasretenciones2'],
+                'otrasret3'                 => $documento['otrasretenciones3'],
+                'otrasret4'                 => $documento['otrasretenciones4'],
+                'otrasret5'                 => $documento['otrasretenciones5'],
+                'totaldocumento'            => $totaldcto,
+                'placa'                     => is_null($documento['placa']) ? "" : $documento['placa'],
+                'proyecto'                  => is_null($documento['proyecto']) ? "" : $documento['proyecto'],
+                'sproyecto'                 => is_null($documento['sproyecto']) ? "" : $documento['sproyecto'],
+                'actividad'                 => is_null($documento['actividad'])? '' : $documento['actividad'],
+                'centro'                    => is_null($documento['centro'])? '' : $documento['centro'],
+                'scentro'                   => is_null($documento['scentro'])? '' : $documento['scentro'],
+                'lapso'                     => $documento['lapso'],
+                'tipodemovimiento'          => $documento['tipodemovimiento'],
+                'tipodecompra'              => $documento['tipodecompra'],
+                'conceptotraslado'          => is_null($documento['cptoinvtr'])?"":$documento['cptoinvtr'],
+                'cptoclasetraslado'         => is_null($documento['cptoclasetr'])?"":$documento['cptoclasetr'],
+                'bodegatraslado'            => is_null($documento['bodegatr'])?"":$documento['bodegatr'],
+                'lotetraslado'              => is_null($documento['lotetr'])?"":$documento['lotetr'],
+                'estado'                    => $documento['estado'],
+                'estado01'                  => $documento['estado01'],
+                'estado02'                  => $documento['estado02'],
+                'estado03'                  => $documento['estado03'],
+                'ivaasumido'                => $documento['ivaasumido'],
+                'observaciones'             => is_null($documento['observaciones'])?"":$documento['observaciones'],
+                'msgvevento1'               => is_null($documento['msgvevento1'])?"":$documento['msgvevento1'],
+                'msgvevento2'               => is_null($documento['msgvevento2'])?"":$documento['msgvevento2'],
+                'msgvevento3'               => is_null($documento['msgvevento3'])?"":$documento['msgvevento3'],
+                'fechaevento1'              => $documento['fechaevento1'],
+                'fechaevento2'              => $documento['fechaevento2'],
+                'fechaevento3'              => $documento['fechaevento3'],
+                'cufe'                      => is_null($documento['cufe'])?"":$documento['cufe'],
+                'codstatus'                 => is_null($documento['codstatus'])?"":$documento['codstatus'],
+                'copdestino'                => is_null($documento['copdestino'])?"":$documento['copdestino'],
+            ]);
+
+        }
+        $contador++;
+        $consecutivo    = 0;
+        $numerofactura  = $factura['numerofactura'];
+        $prefijo        = $factura['prefijo'];
+        $tipodcto       = $factura['tipodocumento'];
+        $fechafac       = $factura['fechafactura'];
+        $nit            = $factura['nit'];
+        $sucursal       = $factura['sucursal'];
+
+        $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
+        $clientesID     = $clientes->clientesID;
         return response()->json(
             [
              'status'   => '200',
