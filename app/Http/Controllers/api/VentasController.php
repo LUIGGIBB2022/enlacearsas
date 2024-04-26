@@ -388,6 +388,17 @@ class VentasController extends Controller
        }
 
        $contador = 0;
+       if (isset($request->dctosinv))
+       {
+        return response()->json(
+            [
+             'status'   => '200',
+             'msg'      => 'Documentos de Inventarios Cargados Existosamente ',
+             'data'     =>  $request->dctosinv,
+            ],Response::HTTP_ACCEPTED);
+       }
+
+       $contador = 0;
        if (isset($request->detinventario))
        {
            $detalles = $request->detinventario;
