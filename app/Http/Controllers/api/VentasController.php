@@ -416,7 +416,7 @@ class VentasController extends Controller
                 'documentodecompra'         => is_null($documento['dctofactura'])?"":$documento['dctodecompra'],
                 'fechadefactura'            => $documento['fechadefactura'],
                 'fechadevencimiento'        => $documento['fechadevencimiento'],
-                'valorfactura'              => $documento['valordcto'],
+                'valordocumento'            => $documento['valordcto'],
                 'descuentoproductos'        => $documento['valordescuento'],
                 'descuentoadicional'        => $documento['valordescuentoadicional'],
                 'valoriva'                  => $documento['valoriva'],
