@@ -456,26 +456,11 @@ class VentasController extends Controller
                 'cufe'                      => is_null($documento['cufe'])?"":$documento['cufe'],
                 'codstatus'                 => is_null($documento['codstatus'])?"":$documento['codstatus'],
                 'copdestino'                => is_null($documento['copdestino'])?"":$documento['copdestino'],
+                'usuario_created'           => $documento['usuariocreated'],
+                'usuario_updated'           => $documento['usuarioupdated'],
             ]);
 
         }
-        $contador++;
-        $consecutivo    = 0;
-        $numerofactura  = $factura['numerofactura'];
-        $prefijo        = $factura['prefijo'];
-        $tipodcto       = $factura['tipodocumento'];
-        $fechafac       = $factura['fechafactura'];
-        $nit            = $factura['nit'];
-        $sucursal       = $factura['sucursal'];
-
-        $clientes       = cliente::where('nit',$nit)->where('sucursal',$sucursal)->first();
-        $clientesID     = $clientes->clientesID;
-        return response()->json(
-            [
-             'status'   => '200',
-             'msg'      => 'Documentos de Inventarios Cargados Existosamente ',
-             'data'     =>  $request->dctosinv,
-            ],Response::HTTP_ACCEPTED);
        }
 
        $contador = 0;
