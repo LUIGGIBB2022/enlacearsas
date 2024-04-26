@@ -431,6 +431,7 @@ class VentasController extends Controller
                 'otrasret5'                 => $documento['otrasretenciones5'],
                 'totaldocumento'            => $totaldcto,
                 'placa'                     => is_null($documento['placa']) ? "" : $documento['placa'],
+                'centrooper'                => is_null($documento['centrooper'])? '' : $documento['centrooper'],
                 'proyecto'                  => is_null($documento['proyecto']) ? "" : $documento['proyecto'],
                 'sproyecto'                 => is_null($documento['sproyecto']) ? "" : $documento['sproyecto'],
                 'actividad'                 => is_null($documento['actividad'])? '' : $documento['actividad'],
