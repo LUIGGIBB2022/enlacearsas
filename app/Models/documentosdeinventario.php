@@ -10,7 +10,7 @@ class documentosdeinventario extends Model
     use HasFactory;
     protected $table = "documentosdeinventarios";
     protected $fillable = [
-        'consecutivo','concepto','cptoclase','nit ','sucursal','fechademovimiento','facturadecompra','documentodecompra','fechadefactura','fechadevencimiento',
+        'consecutivo','concepto','cptoclase','nit','sucursal','fechademovimiento','facturadecompra','documentodecompra','fechadefactura','fechadevencimiento',
         'valordocumento','descuentoproductos','descuentoadicional','retefuente','reteiva','reteica','otrasret1','otrasret2','otrasret3','otrasret4','otrasret5',
         'totaldocumento','valoradicional','valoriva','ordendecompra','placa','proyecto','sproyecto','centrooper','centro','scentro','actividad','lapso','tipodemovimiento',
         'tipodecompra','conceptotraslado','cptoclasetraslado','estado','estado01','estado02','estado03','bodegatraslado','lotetraslado','ivaasumido','observaciones',
