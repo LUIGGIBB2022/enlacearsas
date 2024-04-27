@@ -94,7 +94,7 @@ class VentasController extends Controller
                $sucursal     =   $dato['sucursal'];
                $reg_proveedor = proveedor::updateOrCreate(['nit'=>$nit,'sucursal'=>$sucursal],
                [
-                 'dv '                   => !is_null($dato['dv'])?$dato['dv']:"",
+                 'dv'                   => !is_null($dato['dv'])?$dato['dv']:"",
                  'nombreprimero'         => !is_null($dato['nombreprimero'])?$dato['nombreprimero']:"",
                  'nombresegundo'         => !is_null($dato['nombresegundo'])?$dato['nombresegundo']:"",
                  'apellidosegundo'       => !is_null($dato['apellidosegundo'])?$dato['apellidosegundo']:"",
