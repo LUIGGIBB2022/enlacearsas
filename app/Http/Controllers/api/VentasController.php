@@ -471,7 +471,7 @@ class VentasController extends Controller
                 'facturadecompra'           => $documento['nrodefactura'],
                 'prefijo'                   => is_null($documento['prefijo'])?"":$documento['prefijo'],
                 'ordendecompra'             => is_null($orden)?"":$orden,
-                'documentodecompra'         => is_null($documento['dctofactura'])?"":$documento['dctodecompra'],
+                'documentodecompra'         => is_null($documento['dctofactura'])?"":$documento['dctofactura'],
                 'fechadefactura'            => $documento['fechadefactura'],
                 'fechadevencimiento'        => $documento['fechadevencimiento'],
                 'valordocumento'            => $documento['valordcto'],
