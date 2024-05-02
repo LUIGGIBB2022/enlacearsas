@@ -37,7 +37,7 @@ class ConsultarventasController extends Controller
          }
       else
          {
-            $detalles = detalledefactura::where('FacturasID',$id)->paginate(10);
+            $detalles = detalledefactura::where('FacturasID',$id)->orderBy('detalledefacturas.producto')->paginate(10);
             $facturas = factura::find($id);
             return view ('ventas.verdetalle',compact('detalles','facturas'));
          }

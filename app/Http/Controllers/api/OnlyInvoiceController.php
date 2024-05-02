@@ -142,10 +142,10 @@ class OnlyInvoiceController extends Controller
                 $producto       = $detalle['producto'];
                 $bodega         = $detalle['bodega'];
                 $idregistro     = $detalle['idregistro'];
+                $idlocal        = $detalle['idregister'];
                 $cantidad1      = $detalle['peso']>0?$detalle['peso']:0;
                 $cantidad1      = $detalle['unidades']>0?$detalle['unidades']:$cantidad1;
-
-                detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idregistro'=>$idregistro],
+                detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idlocal'=>$idlocal],
                 [
                     'numerofactura'         => $detalle['numerofactura'],
                     'prefijo'               => $detalle['prefijo'],
@@ -194,6 +194,7 @@ class OnlyInvoiceController extends Controller
                     'estado01'              => is_null($detalle['estado01'])?0:$detalle['estado01'],
                     'estado02'              => is_null($detalle['estado02'])?0:$detalle['estado02'],
                     'estado03'              => is_null($detalle['estado03'])?0:$detalle['estado03'],
+                    'idlocal'               => $idlocal,
                     'usuario_created'       => $detalle['usuc_audi'],
                     'usuario_updated'       => $detalle['usum_audi'],
                 ]);

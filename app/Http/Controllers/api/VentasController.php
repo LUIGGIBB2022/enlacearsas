@@ -257,8 +257,8 @@ class VentasController extends Controller
                 $idregistro     = $detalle['idregistro'];
                 $cantidad1      = $detalle['peso']>0?$detalle['peso']:0;
                 $cantidad1      = $detalle['unidades']>0?$detalle['unidades']:$cantidad1;
-
-                $reg_detf      = detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idregistro'=>$idregistro],
+                $idlocal        = $detalle['idregister']>0?$detalle['idregister']:0;
+                $reg_detf      = detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idlocal'=>$idlocal],
                 [
                     'numerofactura'         => $detalle['numerofactura'],
                     'prefijo'               => $detalle['prefijo'],
@@ -307,6 +307,7 @@ class VentasController extends Controller
                     'estado01'              => is_null($detalle['estado01'])?0:$detalle['estado01'],
                     'estado02'              => is_null($detalle['estado02'])?0:$detalle['estado02'],
                     'estado03'              => is_null($detalle['estado03'])?0:$detalle['estado03'],
+                    'idlocal'               => $idlocal,
                     'usuario_created'       => $detalle['usuariocreated'],
                     'usuario_updated'       => $detalle['usuarioupdated'],
                 ]);
