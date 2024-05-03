@@ -145,7 +145,7 @@ class OnlyInvoiceController extends Controller
                 $idlocal        = $detalle['idregister'];
                 $cantidad1      = $detalle['peso']>0?$detalle['peso']:0;
                 $cantidad1      = $detalle['unidades']>0?$detalle['unidades']:$cantidad1;
-                detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idlocal'=>$idlocal],
+                detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura,'tipodedocumento'=>$tipodcto, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idlocal'=>$idlocal],
                 [
                     'numerofactura'         => $detalle['numerofactura'],
                     'prefijo'               => $detalle['prefijo'],
@@ -171,7 +171,7 @@ class OnlyInvoiceController extends Controller
                     'valordescuento1'       => $detalle['vdescuento1'],
                     'valordescuento2'       => $detalle['vdescuento2'],
                     'valordescuento3'       => $detalle['vdescuento3'],
-                    'idregistro'            => $detalle['idregistro'],
+                    'idregistro'            => $idregistro,
                     'impoconsumo'           => $detalle['impoconsumo'],
                     'concepto'              => $detalle['conceptoinv'],
                     'cptoclase'             => $detalle['cptoclase'],
@@ -194,7 +194,6 @@ class OnlyInvoiceController extends Controller
                     'estado01'              => is_null($detalle['estado01'])?0:$detalle['estado01'],
                     'estado02'              => is_null($detalle['estado02'])?0:$detalle['estado02'],
                     'estado03'              => is_null($detalle['estado03'])?0:$detalle['estado03'],
-                    'idlocal'               => $idlocal,
                     'usuario_created'       => $detalle['usuc_audi'],
                     'usuario_updated'       => $detalle['usum_audi'],
                 ]);
