@@ -243,6 +243,12 @@ class VentasController extends Controller
             $contador = 0;
             $fechadesde = "";
             $fechahasta = "";
+            return response()->json(
+                [
+                 'status'   => '200',
+                 'msg'      => 'Detalle de Ventas',
+                 'ventas'   => $detalles
+                ],Response::HTTP_ACCEPTED);
             foreach ($detalles as $detalle)
             {
                 $fechadesde     =  $contador==0?$detalle['fechafactura']:$fechadesde;
