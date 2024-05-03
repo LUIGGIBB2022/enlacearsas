@@ -265,6 +265,7 @@ class VentasController extends Controller
                      'msg'      => 'Detalle de Ventas',
                      'ventas'   => $idlocal
                     ],Response::HTTP_ACCEPTED);
+                    
                 $reg_detf      = detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idlocal'=>$idlocal],
                 [
                     'numerofactura'         => $detalle['numerofactura'],
