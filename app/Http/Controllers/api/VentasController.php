@@ -260,7 +260,7 @@ class VentasController extends Controller
                 $cantidad1      = $detalle['unidades']>0?$detalle['unidades']:$cantidad1;
                 $idlocal        = $detalle['idlocal'];
 
-                $reg_detf      = detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura,'tipodedocumento'=>$tipodcto, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idlocal'=>$idlocal],
+                detalledefactura::updateOrCreate(['numerodefactura'=>$numerofactura,'tipodedocumento'=>$tipodcto, 'prefijo'=>$prefijo, 'nit' => $nit,'producto' => $producto,'bodega'=>$bodega,'idlocal'=>$idlocal],
                 [
                     'numerofactura'         => $detalle['numerofactura'],
                     'prefijo'               => $detalle['prefijo'],
