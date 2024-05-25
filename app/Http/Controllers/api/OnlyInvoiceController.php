@@ -279,7 +279,7 @@ class OnlyInvoiceController extends Controller
                     'totalfactura'         => $totalfactura,
                     'costodeventa'         => $factura['costodeventa'],
                     'tipodefactura'        => $factura['tipofactura'],
-                    'centrooper'           => $factura['centrooper'],
+                    'centrooper'           => is_null($factura['centrooper'])?"":$factura['centrooper'], 
                     'proyecto'             => is_null($factura['proyecto'])?"":$factura['proyecto'],
                     'sproyecto'            => is_null($factura['sproyecto'])?"":$factura['sproyecto'],
                     'estado'               => $factura['estado'],
