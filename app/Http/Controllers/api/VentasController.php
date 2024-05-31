@@ -721,12 +721,13 @@ class VentasController extends Controller
             DB::raw('sum(totalfactura) as totalventas'),
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
             DB::raw("DATE_FORMAT(fechafactura,'%m') as mes"),
-            DB::raw("fechafactura as dia")
-        )
+            DB::raw("DATE_FORMAT(fechafactura,'%d') as day"),
+            DB::raw("fechafactura as dia"),
+            DB::raw("prefijo as prefijo"))
             ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
             ->where('facturas.estado','=',1)
             ->where('fechafactura',$fecha)
-            ->groupBy('centrodeoperacion','months')
+            ->groupBy('centrodeoperacion','months','day','prefijo')
             ->get();
 
 
