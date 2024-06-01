@@ -730,11 +730,18 @@ class VentasController extends Controller
             ->groupBy('centrodeoperacion','months','day','prefijo')
             ->get();
 
+        $ventasjs =$ventas;
+        $tot = 0.00;
+        foreach($ventas as $dato)
+          {
+            $tot = $tot + $dato->totalventas;
+          }
 
         return response()->json(
             [
              'status'   => '200',
              'msg'      => 'Ventas Diarias Consolidadas por Centros de operaciones (' . $fecha .')',
+             'grantotal' =>  $tot,
              'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
     }
