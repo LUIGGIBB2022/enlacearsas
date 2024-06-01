@@ -741,6 +741,7 @@ class VentasController extends Controller
             [
              'status'   => '200',
              'msg'      => 'Ventas Diarias Consolidadas por Centros de operaciones (' . $fecha .')',
+             'fechadecorte' => $fecha,
              'grantotal' =>  $tot,
              'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
