@@ -722,7 +722,7 @@ class VentasController extends Controller
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
             DB::raw("DATE_FORMAT(fechafactura,'%m') as mes"),
             DB::raw("DATE_FORMAT(fechafactura,'%d') as day"),
-            DB::raw("fechafactura as dia"),
+            DB::raw("fechafactura as fecha"),
             DB::raw("prefijo as prefijo"))
             ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
             ->where('facturas.estado','=',1)
