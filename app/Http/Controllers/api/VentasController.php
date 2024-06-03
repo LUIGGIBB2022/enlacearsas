@@ -745,7 +745,10 @@ class VentasController extends Controller
             [
              'status'   => '200',
              'msg'      => 'Ventas Diarias Consolidadas por Centros de operaciones (' . $fecha .')',
-             'fechadecorte' => $fecha,
+             'fechadesde' => $fechad,
+             'fechahasta' => $fechah,
+             'horadesde' => $horad,
+             'horahasta' => $horah,
              'grantotal' =>  $tot,
              'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
