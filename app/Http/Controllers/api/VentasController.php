@@ -744,7 +744,7 @@ class VentasController extends Controller
         return response()->json(
             [
              'status'   => '200',
-             'msg'      => 'Ventas Diarias Consolidadas por Centros de operaciones (' . $fecha .')',
+             'msg'      => 'Ventas Diarias Consolidadas por Centros de operaciones (' . $fechad .'='.$fechah.')',
              'fechadesde' => $fechad,
              'fechahasta' => $fechah,
              'horadesde' => $horad,
