@@ -714,7 +714,10 @@ class VentasController extends Controller
     {
 
         DB::statement("SET lc_time_names = 'es_Es';");
-        $fecha  = $request->fechadeconsulta;
+        $fechad  = $request->fechadesde;
+        $fechah  = $request->fechahasta;
+        $horad   = $request->horadesde;
+        $horah   = $request->horahasta;
         $anop  = $request->año;
         $ventas = factura::select(
             DB::raw('centrooperativo.nombre as centrodeoperacion'),
@@ -726,7 +729,8 @@ class VentasController extends Controller
             DB::raw("prefijo as prefijo"))
             ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
             ->where('facturas.estado','=',1)
-            ->where('fechafactura',$fecha)
+            ->whereBetween('fechafactura',[$fechad,$fechah])
+            ->whereBetween('horadefactura',[$horad,$horah])
             ->groupBy('centrodeoperacion','months','day','prefijo')
             ->get();
 
