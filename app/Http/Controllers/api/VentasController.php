@@ -773,7 +773,7 @@ class VentasController extends Controller
             DB::raw('valorfactura as valorfactura'),
             DB::raw('(descuentosproductos+descuentosadicionales) as descuentos'),
             DB::raw('valoriva as valoriva'),
-            DB::raw('valordicional as valoradicional'),
+            DB::raw('valoradicional as valoradicional'),
             DB::raw('retefuente as retefuente'),
             DB::raw('reteiva as reteiva'),
             DB::raw('reteica as reteica'),
