@@ -28,6 +28,7 @@ Route::group(['middleware'=>['auth:sanctum']],function()
     Route::post('update-sales', [VentasController::class,'UpdateSales']);
     Route::get('consolidated-sales-center', [VentasController::class,'ConsolidatedSalesCenter']);
     Route::get('daily-sales-center', [VentasController::class,'DailySalesCenter']);
+    Route::get('daily-detailed-sales', [VentasController::class,'DailyDetailedSales']);
 
     // Rutas Información de sólo una factura
     Route::post('only-invoice', [OnlyInvoiceController::class,'OnlyInvoice']);

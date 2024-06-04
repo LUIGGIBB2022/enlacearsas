@@ -751,4 +751,62 @@ class VentasController extends Controller
              'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
     }
+
+    public function DailyDetailedSales(Request $request):JsonResponse
+    {
+        DB::statement("SET lc_time_names = 'es_Es';");
+        $fechad  = $request->fechadesde;
+        $fechah  = $request->fechahasta;
+        $horad   = $request->horadesde;
+        $horah   = $request->horahasta;
+        $anop  = $request->año;
+        $ventas = factura::select(
+            DB::raw("fechafactura as fecha"),
+            DB::raw("fechavencimiento as vencimiento"),
+            DB::raw('numerodefactura as numerodefactura'),
+            DB::raw('tipodedocumento as tipodedocumento'),
+            DB::raw("prefijo as prefijo"),
+            DB::raw("horadefactura as horadefactura"),
+            DB::raw('nombreventa as nombreventa'),
+            DB::raw('habitacion as habitacion'),
+            DB::raw('centrooperativo.nombre as centrodeoperacion'),
+            DB::raw('valorfactura as valorfactura'),
+            DB::raw('(descuentosproductos+descuentosadicionales) as descuentos'),
+            DB::raw('valoriva as valoriva'),
+            DB::raw('valordicional as valoradicional'),
+            DB::raw('retefuente as retefuente'),
+            DB::raw('reteiva as reteiva'),
+            DB::raw('reteica as reteica'),
+            DB::raw('totalfactura as totalfactura'),
+            DB::raw('estado as estado'),
+            DB::raw('estado01 as estado01'),
+            DB::raw('estado02 as estado02'),
+            DB::raw('estado03 as estado03'),
+            DB::raw('facturasID as id'),
+            DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
+            DB::raw("DATE_FORMAT(fechafactura,'%m') as mes"),
+            DB::raw("DATE_FORMAT(fechafactura,'%d') as day"))
+            ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
+            ->where('facturas.estado','=',1)
+            ->whereBetween('fechafactura',[$fechad,$fechah])
+            ->whereBetween('horadefactura',[$horad,$horah])
+            ->get();
+
+        $ventasjs =$ventas;
+        $tot = 0.00;
+        foreach($ventas as $dato)
+          {
+            $tot = $tot + $dato->totalfactura;
+          }
+
+        return response()->json(
+            [
+             'status'   => '200',
+             'msg'      => 'Ventas Detalladas Diarias (' . $fechad .'='.$fechah.')',
+             'fechadesde' => $fechad ." ". $horad,
+             'fechahasta' => $fechah ." ". $horah,
+             'grantotal' =>  $tot,
+             'ventas'   => $ventas
+            ],Response::HTTP_ACCEPTED);
+    }
 }
