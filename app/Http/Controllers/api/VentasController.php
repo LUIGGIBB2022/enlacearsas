@@ -770,6 +770,7 @@ class VentasController extends Controller
             DB::raw('nombreventa as nombreventa'),
             DB::raw('habitacion as habitacion'),
             DB::raw('centrooperativo.nombre as centrodeoperacion'),
+            DB::raw('vendedor.nombre as nombrevendedor'),
             DB::raw('valorfactura as valorfactura'),
             DB::raw('(descuentosproductos+descuentosadicionales) as descuentos'),
             DB::raw('valoriva as valoriva'),
