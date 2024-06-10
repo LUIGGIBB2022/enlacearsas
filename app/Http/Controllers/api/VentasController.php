@@ -768,7 +768,7 @@ class VentasController extends Controller
             DB::raw("prefijo as prefijo"),
             DB::raw("horadefactura as horadefactura"),
             DB::raw('nit as nit'),
-            //DB::raw('sucursal as sucursal'),
+            DB::raw('facturas.sucursal as sucursal'),
             DB::raw('nombreventa as nombreventa'),
             DB::raw('habitacion as habitacion'),
             DB::raw('centrooperativo.nombre as centrodeoperacion'),
