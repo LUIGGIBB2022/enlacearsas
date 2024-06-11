@@ -830,7 +830,7 @@ class VentasController extends Controller
             DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
             DB::raw("DATE_FORMAT(fechafactura,'%m') as mes"),
             //DB::raw("dias[ intval(DATE_FORMAT(fechafactura,'%w'))] as diadelasemana"),
-            DB::raw("intval(DATE_FORMAT(fechafactura,'%w')) as diadelasemana"),
+            DB::raw("DATE_FORMAT(fechafactura,'%w') as diadelasemana"),
             DB::raw("facturas.fechafactura  as fechafactura"),                 )
             ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
             ->where('facturas.estado','=',1)
