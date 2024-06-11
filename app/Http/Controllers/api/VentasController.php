@@ -848,12 +848,14 @@ class VentasController extends Controller
            $tot = $tot + $dato->totalventas;
         }
 
+        $mesproceso = $mes . "-" . $anop;
         return response()->json(
             [
-             'status'       => '200',
-             'msg'          => 'Ventas Consolidadas por Centros de operaciones (' . $anop .')',
-             'grantotal'    =>  $tot,
-             'ventas'   => $ventasjs,
+             'status'           => '200',
+             'msg'              => 'Ventas Diarias Consolidadas Año ('. $anop .')',
+             'grantotal'        =>  $tot,
+             'mesproceso'       =>  $mesproceso,
+             'ventas'           => $ventasjs,
             ],Response::HTTP_ACCEPTED);
 
     }
