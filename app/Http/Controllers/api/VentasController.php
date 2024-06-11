@@ -820,7 +820,7 @@ class VentasController extends Controller
 
     public function DailyConsolidatedSales(Request $request):JsonResponse
     {
-        $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+        $meses = array("Enero","Febrero","Marzo","Abríl","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         DB::statement("SET lc_time_names = 'es_Es';");
         $mes  = $request->mes;
         $anop  = $request->año;
@@ -848,7 +848,7 @@ class VentasController extends Controller
            $tot = $tot + $dato->totalventas;
         }
 
-        $mesproceso = $mes . "-" . $anop;
+        $mesproceso = $meses[intval($mes) -1] . "-" . $anop;
         return response()->json(
             [
              'status'           => '200',
