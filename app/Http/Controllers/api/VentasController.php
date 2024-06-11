@@ -817,4 +817,41 @@ class VentasController extends Controller
              'ventas'   => $ventas
             ],Response::HTTP_ACCEPTED);
     }
+
+    public function DailyConsolidatedSales(Request $request):JsonResponse
+    {
+        $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+        DB::statement("SET lc_time_names = 'es_Es';");
+        $mes  = $request->mes;
+        $anop  = $request->año;
+        $ventas = factura::select(
+            DB::raw('centrooperativo.nombre as centrodeoperacion'),
+            DB::raw("sum(round(totalfactura,0)) as totalventas"),
+            DB::raw("DATE_FORMAT(fechafactura,'%M %Y') as months"),
+            DB::raw("DATE_FORMAT(fechafactura,'%m') as mes"),
+            DB::raw("DATE_FORMAT(fechafactura,'%w') as diadelasemana"),
+            DB::raw("facturas.fechafactura  as fechafactura"),                 )
+            ->leftjoin('centrooperativo', 'facturas.centrooper', '=', 'centrooperativo.codigo')
+            ->where('facturas.estado','=',1)
+            ->whereMonth('fechafactura',$mes)
+            ->whereYear('fechafactura',$anop )
+            ->groupBy('centrodeoperacion','months','fechafactura')
+            ->get();
+
+        $ventasjs =$ventas;
+        $tot = 0.00;
+        foreach($ventas as $dato)
+        {
+           $tot = $tot + $dato->totalventas;
+        }
+
+        return response()->json(
+            [
+             'status'       => '200',
+             'msg'          => 'Ventas Consolidadas por Centros de operaciones (' . $anop .')',
+             'grantotal'    =>  $tot,
+             'ventas'   => $ventasjs,
+            ],Response::HTTP_ACCEPTED);
+
+    }
 }
