@@ -782,6 +782,7 @@ class VentasController extends Controller
             DB::raw('round(reteiva,0) as reteiva'),
             DB::raw('round(reteica,0) as reteica'),
             DB::raw('round(totalfactura,0) as totalfactura'),
+            DB::raw('cufe as cufe'),
             DB::raw('facturas.estado as estado'),
             DB::raw('facturas.estado01 as estado01'),
             DB::raw('facturas.estado02 as estado02'),
