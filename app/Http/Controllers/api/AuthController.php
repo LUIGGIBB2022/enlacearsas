@@ -105,7 +105,7 @@ class AuthController extends Controller
 
     public function UpdateControl(Request $request):JsonResponse
     {
-        $control = $request->datacontrol;
+        $control = $request;
         if ($control->status == "SI")
            {
               $ctrl = enlacevisual_nv::findOrFail(1);
