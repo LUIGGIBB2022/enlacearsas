@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\enlacevisual_nv;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class AuthController extends Controller
@@ -98,5 +101,30 @@ class AuthController extends Controller
              'msg' => 'Solicitud Exitosa del Usuario',
              'data' => Auth()->user(),
             ]);
+    }
+
+    public function UpdateControl(Request $request):JsonResponse
+    {
+        $control = $request->datacontrol;
+        if ($control->status == "SI")
+           {
+              $ctrl = enlacevisual_nv::findOrFail(1);
+              $ctrl->statuscontrol = "SI";
+              $ctrl->update();
+           }
+
+
+        if ($control->status == "NO")
+           {
+              $ctrl = enlacevisual_nv::findOrFail(1);
+              $ctrl->statuscontrol = "NO";
+              $ctrl->update();
+           }
+
+        return response()->json(
+            [
+             'status'           => '200',
+             'msg'              => 'Actualización Exitosa de Control',
+            ],Response::HTTP_ACCEPTED);
     }
 }

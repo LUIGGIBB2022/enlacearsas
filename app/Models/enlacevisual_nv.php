@@ -21,7 +21,7 @@ class enlacevisual_nv extends Model
         'car_documentodecartera','car_cuentadebdeterioro','car_centrodebdeterioro','car_scentrodebdeteriorio','car_cuentacredeterioro','car_centrocredeterioro','car_scentrocredeterioro','car_documentodeterioro','car_documentoreversion',
         'car_interesesdemora','tes_nombredeltesorero','tes_clavemontocartera','tes_claveespecial1','tes_claveespecial2','tes_claveespecial3','tes_cuentaconsignacion','tes_centroconsignacion','tes_scentroconsignacion','tes_cuentadebdeterioro',
         'tes_centrodebdeterioro','tes_scentrodebdeterioro','tes_cuentacredeterioro','tes_centrocredeterioro','tes_scentrocredeterioro','	tes_documentodeterioro','tes_documentoreversion','documentopedido','documentocartera','password','smtp','puerto',
-        'apikeygooglemap','apikeymapeo01','apikeymapeo02','apikeymapeo03','usuario_created','usuario_updated','fecha_created','fecha_updated'];
+        'apikeygooglemap','apikeymapeo01','apikeymapeo02','apikeymapeo03','statuscontrol','usuario_created','usuario_updated','fecha_created','fecha_updated'];
 
     protected $primaryKey = "idempresa";
     public $timestamps = false;
