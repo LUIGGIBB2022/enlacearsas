@@ -136,7 +136,7 @@ class AuthController extends Controller
             [
              'status'           => '200',
              'msg'              => 'Información de Status Enviada',
-             'Estado'            => $ctrl->statruscontrol
+             'Estado'            => $ctrl->statuscontrol
             ],Response::HTTP_ACCEPTED);
     }
 }
