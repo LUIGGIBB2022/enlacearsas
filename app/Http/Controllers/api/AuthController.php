@@ -130,8 +130,7 @@ class AuthController extends Controller
 
     public function ConsultControl():JsonResponse
     {
-          $ctrl = enlacevisual_nv::findOrFail(1);
-
+        $ctrl = enlacevisual_nv::findOrFail(1);
 
         return response()->json(
             [
