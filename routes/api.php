@@ -36,8 +36,8 @@ Route::group(['middleware'=>['auth:sanctum']],function()
     Route::post('only-client', [OnlyInvoiceController::class,'OnlyClient']);
     Route::post('only-detinvoice', [OnlyInvoiceController::class,'OnlyDetInvoice']);
 
-    // Rutas Actualizar Tabla de Control
+    // Rutas Actualizar / Consultar Tabla de Control
     Route::post('update-control', [AuthController::class,'UpdateControl']);
-
+    Route::get('consult-control', [AuthController::class,'ConsultControl']);
 });
 

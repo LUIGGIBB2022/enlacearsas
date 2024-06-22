@@ -127,4 +127,17 @@ class AuthController extends Controller
              'msg'              => 'Actualización Exitosa de Control',
             ],Response::HTTP_ACCEPTED);
     }
+
+    public function ConsultControl():JsonResponse
+    {
+          $ctrl = enlacevisual_nv::findOrFail(1);
+
+
+        return response()->json(
+            [
+             'status'           => '200',
+             'msg'              => 'Información de Status Enviada',
+             'Estado'            => $ctrl->statruscontrol
+            ],Response::HTTP_ACCEPTED);
+    }
 }
