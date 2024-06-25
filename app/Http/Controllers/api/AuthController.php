@@ -42,21 +42,24 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+      $usuario = User::where('email','=',$request->email)->first();
+      return response()->json(
+         [
+             'status' => '1',
+             'msg' => 'Usuario logueado Exitosamente Init',
+             'codusuario' => $usuario->codigo,
+             'data' => $usuario,
+             'request' => $request,
+         ],200);
+
         $request->validate([
             'email' =>'required',
             'password' =>'required'
          ]);
 
-         $usuario = User::where('email','=',$request->email)->first();
 
-         return response()->json(
-            [
-                'status' => '1',
-                'msg' => 'Usuario logueado Exitosamente Init',
-                'codusuario' => $usuario->codigo,
-                'data' => $usuario,
-                'request' => $request,
-            ],200);
+
+
 
 
 
