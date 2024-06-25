@@ -40,9 +40,10 @@ class AuthController extends Controller
           ]);
     }
 
-    public function login(Request $request)
+    public function login(Request $request):JsonResponse
     {
       $usuario = User::where('email','=',$request->email)->first();
+
       return response()->json(
          [
              'status' => '1',
@@ -50,7 +51,7 @@ class AuthController extends Controller
              'codusuario' => $usuario->codigo,
              'data' => $usuario,
              'request' => $request,
-         ],200);
+         ],Response::HTTP_ACCEPTED);
 
         $request->validate([
             'email' =>'required',
