@@ -49,8 +49,19 @@ class AuthController extends Controller
 
          $usuario = User::where('email','=',$request->email)->first();
 
+         return response()->json(
+            [
+                'status' => '1',
+                'msg' => 'Usuario logueado Exitosamente Init',
+                'codusuario' => $usuario->codigo,
+                'data' => $usuario,
+                'request' => $request,
+            ],200);
 
-         $usuario = User::where('email','=',$request->email)->first();
+
+
+
+         //$usuario = User::where('email','=',$request->email)->first();
 
         if (isset($usuario->id))
          {
