@@ -42,7 +42,7 @@ class AuthController extends Controller
 
     public function login(Request $request):JsonResponse
     {
-      $control = $request;
+      $correo = $request->email ."--" . $request->password;
       $usuario = User::where('email','=',$request->email)->first();
 
       return response()->json(
@@ -51,7 +51,7 @@ class AuthController extends Controller
              'msg' => 'Usuario logueado Exitosamente Init',
              'codusuario' => $usuario->codigo,
              'data' => $usuario,
-             'request' => $control,
+             'request' => $correo,
          ],Response::HTTP_ACCEPTED);
 
         $request->validate([
